@@ -1,11 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="repository.Person1Controller">
-    
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Player 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="61.0" layoutY="125.0" text="Enter your name :" />
+                        <Button layoutX="473.0" layoutY="302.0" mnemonicParsing="false" text="Player 2 &gt;" />
+                        <TextField layoutX="61.0" layoutY="151.0" />
+                        <SplitMenuButton layoutX="64.0" layoutY="198.0" mnemonicParsing="false" text="Choose Your Race">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Hispanic / Latino" />
+                            <MenuItem mnemonicParsing="false" text="Asian / Pacific Islander" />
+                              <MenuItem mnemonicParsing="false" text="Caucasian" />
+                              <MenuItem mnemonicParsing="false" text="Black" />
+                          </items>
+                        </SplitMenuButton>
+                        <SplitMenuButton layoutX="64.0" layoutY="246.0" mnemonicParsing="false" text="Select A Color ">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Red" />
+                              <MenuItem mnemonicParsing="false" text="Green" />
+                              <MenuItem mnemonicParsing="false" text="Blue" />
+                              <MenuItem mnemonicParsing="false" text="Yellow" />
+                           </items>
+                        </SplitMenuButton>
+                        <Label layoutX="251.0" layoutY="32.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="74.0" text="By Team Get That A" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Player 2">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="61.0" layoutY="125.0" text="Enter your name :" />
+                        <Button layoutX="473.0" layoutY="302.0" mnemonicParsing="false" text="Player 3 &gt;" />
+                        <TextField layoutX="61.0" layoutY="151.0" />
+                        <SplitMenuButton layoutX="64.0" layoutY="198.0" mnemonicParsing="false" text="Choose Your Race">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Hispanic / Latino" />
+                              <MenuItem mnemonicParsing="false" text="Asian / Pacific Islander" />
+                              <MenuItem mnemonicParsing="false" text="Caucasian" />
+                              <MenuItem mnemonicParsing="false" text="Black" />
+                           </items>
+                        </SplitMenuButton>
+                        <SplitMenuButton layoutX="64.0" layoutY="246.0" mnemonicParsing="false" text="Select A Color ">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Red" />
+                              <MenuItem mnemonicParsing="false" text="Green" />
+                              <MenuItem mnemonicParsing="false" text="Blue" />
+                              <MenuItem mnemonicParsing="false" text="Yellow" />
+                           </items>
+                        </SplitMenuButton>
+                        <Label layoutX="251.0" layoutY="32.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="74.0" text="By Team Get That A" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Player 3">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="61.0" layoutY="125.0" text="Enter your name :" />
+                        <Button layoutX="473.0" layoutY="302.0" mnemonicParsing="false" text="Player 4 &gt;" />
+                        <TextField layoutX="61.0" layoutY="151.0" />
+                        <SplitMenuButton layoutX="64.0" layoutY="198.0" mnemonicParsing="false" text="Choose Your Race">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Hispanic / Latino" />
+                              <MenuItem mnemonicParsing="false" text="Asian / Pacific Islander" />
+                              <MenuItem mnemonicParsing="false" text="Caucasian" />
+                              <MenuItem mnemonicParsing="false" text="Black" />
+                           </items>
+                        </SplitMenuButton>
+                        <SplitMenuButton layoutX="64.0" layoutY="246.0" mnemonicParsing="false" text="Select A Color ">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Red" />
+                              <MenuItem mnemonicParsing="false" text="Green" />
+                              <MenuItem mnemonicParsing="false" text="Blue" />
+                              <MenuItem mnemonicParsing="false" text="Yellow" />
+                           </items>
+                        </SplitMenuButton>
+                        <Label layoutX="251.0" layoutY="32.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="74.0" text="By Team Get That A" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Player 4">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="61.0" layoutY="125.0" text="Enter your name :" />
+                        <Button layoutX="473.0" layoutY="302.0" mnemonicParsing="false" text="Start Game!" />
+                        <TextField layoutX="61.0" layoutY="151.0" />
+                        <SplitMenuButton layoutX="64.0" layoutY="198.0" mnemonicParsing="false" text="Choose Your Race">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Hispanic / Latino" />
+                              <MenuItem mnemonicParsing="false" text="Asian / Pacific Islander" />
+                              <MenuItem mnemonicParsing="false" text="Caucasian" />
+                              <MenuItem mnemonicParsing="false" text="Black" />
+                           </items>
+                        </SplitMenuButton>
+                        <SplitMenuButton layoutX="64.0" layoutY="246.0" mnemonicParsing="false" text="Select A Color ">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Red" />
+                              <MenuItem mnemonicParsing="false" text="Green" />
+                              <MenuItem mnemonicParsing="false" text="Blue" />
+                              <MenuItem mnemonicParsing="false" text="Yellow" />
+                           </items>
+                        </SplitMenuButton>
+                        <Label layoutX="251.0" layoutY="32.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="74.0" text="By Team Get That A" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>

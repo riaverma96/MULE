@@ -43,10 +43,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    @FXML
-    private void handleBeginnerButton(ActionEvent event) {
-        
-    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

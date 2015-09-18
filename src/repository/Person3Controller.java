@@ -15,32 +15,31 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-
 /**
+ * FXML Controller class
  *
  * @author riaverma
  */
-public class FXMLDocumentController implements Initializable {
+public class Person3Controller implements Initializable {
     
     @FXML
-    private Label label;
-    @FXML
-    private Button continueButton;
-    
-    @FXML
+    private Button player3;
+   
+    /**
+     * Initializes the controller class.
+     */
+   @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        
-        Button b = (Button) event.getSource();
+         Button b = (Button) event.getSource();
         b.setTextFill(Color.RED);
         Stage stage;
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        if(event.getSource() == continueButton) {
-            stage = (Stage) continueButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("Person1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Person3.fxml"));
+        if(event.getSource() == player3) {
+            stage = (Stage) player3.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("Person4.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -48,9 +47,6 @@ public class FXMLDocumentController implements Initializable {
         }
      
     }
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

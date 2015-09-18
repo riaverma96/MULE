@@ -1,43 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="repository.FXMLDocumentController">
-    <children>
-        <Button fx:id="continueButton" layoutX="466.0" layoutY="442.0" onAction="#handleButtonAction" text="Continue!" />
-        <Label fx:id="label" layoutX="266.0" layoutY="293.0" minHeight="16" minWidth="69" />
-      <Label layoutX="251.0" layoutY="37.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Label>
-      <Label layoutX="283.0" layoutY="79.0" text="By Team Get That A" />
-      <Label layoutX="49.0" layoutY="152.0" text="Select level of difficulty :">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Slider blockIncrement="1.0" layoutX="207.0" layoutY="273.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="38.0" prefWidth="218.0" showTickLabels="true" showTickMarks="true" />
-      <Button fx:id="beginnerButton" layoutX="90.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Beginner" />
-      <Button layoutX="270.0" layoutY="185.0" mnemonicParsing="false" text="Intermediate" />
-      <Button layoutX="466.0" layoutY="185.0" mnemonicParsing="false" text="Expert" />
-      <Label layoutX="49.0" layoutY="241.0" text="Select number of players :">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="317.0" text="Select Map Type :">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button layoutX="93.0" layoutY="350.0" mnemonicParsing="false" text="Dessert" />
-      <Button layoutX="288.0" layoutY="350.0" mnemonicParsing="false" text="Forest" />
-      <Button layoutX="437.0" layoutY="350.0" mnemonicParsing="false" text="Mountain Range" />
-    </children>
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="repository.FXMLDocumentController">
+  <children>
+    <Button fx:id="continueButton" layoutX="466.0" layoutY="442.0" onAction="#handleButtonAction" text="Continue!" />
+    <Label fx:id="label" layoutX="266.0" layoutY="293.0" minHeight="16.0" minWidth="69.0" />
+    <Label layoutX="251.0" layoutY="37.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+      <font>
+        <Font size="35.0" />
+      </font>
+    </Label>
+    <Label layoutX="283.0" layoutY="79.0" text="By Team Get That A" />
+    <Label layoutX="49.0" layoutY="152.0" text="Select level of difficulty :">
+      <font>
+        <Font size="15.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Slider blockIncrement="1.0" layoutX="207.0" layoutY="273.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="38.0" prefWidth="218.0" showTickLabels="true" showTickMarks="true" />
+    <Button fx:id="beginnerButton" layoutX="90.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Beginner" />
+    <Button layoutX="270.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Intermediate" />
+    <Button layoutX="466.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Expert" />
+    <Label font="$x1" layoutX="49.0" layoutY="241.0" text="Select number of players :" />
+    <Label font="$x1" layoutX="49.0" layoutY="317.0" text="Select Map Type :" />
+    <Button layoutX="93.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Dessert" />
+    <Button layoutX="288.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Forest" />
+    <Button layoutX="437.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Mountain Range" />
+  </children>
 </AnchorPane>

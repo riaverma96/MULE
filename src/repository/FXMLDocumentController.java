@@ -36,6 +36,7 @@ public class FXMLDocumentController implements Initializable {
         
         Button b = (Button) event.getSource();
         b.setTextFill(Color.RED);
+        
         Stage stage;
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         if(event.getSource() == continueButton) {

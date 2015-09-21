@@ -22,7 +22,7 @@
       </font>
     </Label>
     <Label layoutX="14.0" layoutY="97.0" text="Enter your name :" />
-    <TextField layoutX="14.0" layoutY="127.0" />
+    <TextField fx:id="p1Name" layoutX="14.0" layoutY="127.0" onAction="#handleButtonAction" />
     <Label layoutX="14.0" layoutY="168.0" text="Select A Race:" />
     <Button layoutX="21.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Humanoid" />
     <Button layoutX="126.0" layoutY="189.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Mechtron" />

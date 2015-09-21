@@ -28,8 +28,7 @@
     <Button layoutX="466.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Expert" />
     <Label font="$x1" layoutX="49.0" layoutY="241.0" text="Select number of players :" />
     <Label font="$x1" layoutX="49.0" layoutY="317.0" text="Select Map Type :" />
-    <Button layoutX="93.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Dessert" />
-    <Button layoutX="288.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Forest" />
-    <Button layoutX="437.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Mountain Range" />
+    <Button layoutX="49.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Standard Map" />
+    <Button layoutX="207.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Random Map" />
   </children>
 </AnchorPane>

@@ -67,7 +67,7 @@ public class GameStartController implements Initializable {
     Button button48;
     Button town;
     private int counter = 1;
-    private int playerTurn = 1;
+    private int playerTurn = 0;
     private boolean[][] clicked = new boolean[5][9]; 
     
     /**
@@ -83,7 +83,7 @@ public class GameStartController implements Initializable {
         int y = Integer.valueOf(ylocation);
         
        if (clicked[x][y] == false) {
-           if (playerTurn <= 10) {
+           if (playerTurn < 8) {
              if (counter == 1) {
                 b.setStyle("-fx-background-color: slateblue; -fx-text-fill: white;");
             } else if (counter == 2) {
@@ -96,7 +96,7 @@ public class GameStartController implements Initializable {
          counter++;
          
          if (counter >= 5) {
-             counter = 0;
+             counter = 1;
          }
         }
         playerTurn++;

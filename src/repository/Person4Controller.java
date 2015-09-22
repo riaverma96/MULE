@@ -5,6 +5,10 @@
  */
 package repository;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.swing.ImageIcon;
 
 /**
  * FXML Controller class
@@ -27,13 +32,14 @@ public class Person4Controller implements Initializable {
     
     @FXML
     private Button startGame;
+    Image image;
    
     /**
      * Initializes the controller class.
      */
    @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-         Button b = (Button) event.getSource();
+        Button b = (Button) event.getSource();
         b.setTextFill(Color.RED);
         Stage stage;
         Parent root = FXMLLoader.load(getClass().getResource("Person4.fxml"));
@@ -47,6 +53,7 @@ public class Person4Controller implements Initializable {
         }
      
     }
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

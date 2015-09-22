@@ -49,6 +49,7 @@ public class Person4Controller implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            System.out.println("Player 1 pick land");
         
         }
      

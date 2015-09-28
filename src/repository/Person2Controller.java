@@ -7,6 +7,7 @@ package repository;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -33,6 +35,11 @@ public class Person2Controller implements Initializable {
      */
    @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() instanceof TextField) {
+            TextField text = (TextField) event.getSource();
+            String name = text.getText();
+            Player2.setName(name);
+        }
         Button b = (Button) event.getSource();
         b.setTextFill(Color.RED);
         Stage stage;
@@ -44,6 +51,13 @@ public class Person2Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         
+        }
+        if(Arrays.asList(Player2.races).contains(b.getText())) {
+            Player2.setRace(b.getText());
+     
+        }
+        if(Arrays.asList(Player2.colors).contains(b.getText())){
+             Player2.setColor(b.getText());
         }
      
     }

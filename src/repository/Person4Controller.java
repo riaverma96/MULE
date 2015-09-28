@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.ImageIcon;
@@ -48,6 +50,11 @@ public class Person4Controller implements Initializable {
      */
    @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
+         if (event.getSource() instanceof TextField) {
+            TextField text = (TextField) event.getSource();
+            String name = text.getText();
+            Player4.setName(name);
+        }
         Button b = (Button) event.getSource();
         String id = b.getId();
         Stage stage;
@@ -111,6 +118,13 @@ public class Person4Controller implements Initializable {
             stage.show();
             System.out.println("Player 1 pick land");
         
+        }
+         if(Arrays.asList(Player4.races).contains(b.getText())) {
+            Player4.setRace(b.getText());
+     
+        }
+        if(Arrays.asList(Player4.colors).contains(b.getText())){
+             Player4.setColor(b.getText());
         }
      
     }

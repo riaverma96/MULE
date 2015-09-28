@@ -7,6 +7,7 @@ package repository;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -43,6 +45,13 @@ public class Person3Controller implements Initializable {
     private void handleButtonAction(ActionEvent event) throws IOException {
          Button b = (Button) event.getSource();
         String id = b.getId();
+        if (event.getSource() instanceof TextField) {
+            TextField text = (TextField) event.getSource();
+            String name = text.getText();
+            Player3.setName(name);
+        }
+        Button b = (Button) event.getSource();
+        b.setTextFill(Color.RED);
         Stage stage;
         Parent root = FXMLLoader.load(getClass().getResource("Person3.fxml"));
         if(id.equals("flapper")) {
@@ -103,6 +112,13 @@ public class Person3Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         
+        }
+        if(Arrays.asList(Player3.races).contains(b.getText())) {
+            Player3.setRace(b.getText());
+     
+        }
+        if(Arrays.asList(Player3.colors).contains(b.getText())){
+             Player3.setColor(b.getText());
         }
      
     }

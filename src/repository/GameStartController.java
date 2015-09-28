@@ -115,18 +115,22 @@ public class GameStartController implements Initializable {
                 
                 if (counter == 1) {
                     System.out.println("Player 2 pick land");
-                    b.setStyle("-fx-background-color: slateblue; -fx-text-fill: white;");
+                    String color = Player1.getColor();
+                    b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 } else if (counter == 2) {
                      System.out.println("Player 3 pick land");
-                    b.setStyle("-fx-background-color: Green; -fx-text-fill: white;");
+                    String color = Player2.getColor();
+                    b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 } else if (counter == 3) {
-                     System.out.println("Player 4 pick land");
-                    b.setStyle("-fx-background-color: Orange; -fx-text-fill: white;");
+                    System.out.println("Player 4 pick land");
+                    String color = Player3.getColor();
+                    b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 } else if (counter == 4) {
                     if (playerTurn < 7) {
                          System.out.println("Player 1 pick land");
                     }
-                    b.setStyle("-fx-background-color: Red; -fx-text-fill: white;");
+                    String color = Player4.getColor();
+                    b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 }
             counter++;
 
@@ -143,7 +147,8 @@ public class GameStartController implements Initializable {
                         int choice = scanner.nextInt();
                         if (choice == 1) {
                             if (player1.DaddyHasMoney()) {
-                                b.setStyle("-fx-background-color: slateblue; -fx-text-fill: white;");
+                                String color = Player1.getColor();
+                                b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player1.buyLand();
                                 clicked[x][y] = true;
                             } else {
@@ -160,7 +165,8 @@ public class GameStartController implements Initializable {
                         int choice = scanner.nextInt();
                         if (choice == 1) {
                             if (player2.DaddyHasMoney()) {
-                                b.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+                                String color = Player2.getColor();
+                                b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player2.buyLand();
                                 clicked[x][y] = true;
                             } else {
@@ -177,7 +183,8 @@ public class GameStartController implements Initializable {
                         int choice = scanner.nextInt();
                         if (choice == 1) {
                             if (player3.DaddyHasMoney()) {
-                                b.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+                                String color = Player3.getColor();
+                                b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player3.buyLand();
                                 clicked[x][y] = true;
                             } else {
@@ -194,7 +201,8 @@ public class GameStartController implements Initializable {
                         int choice = scanner.nextInt();
                         if (choice == 1) {
                             if (player4.DaddyHasMoney()) {
-                                b.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+                                String color = Player4.getColor();
+                                b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player4.buyLand();
                             } else {
                                 System.out.println("You dont have money");

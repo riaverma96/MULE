@@ -23,51 +23,6 @@ import javafx.stage.Stage;
  */
 public class GameStartController implements Initializable {
     
-    Button button00;
-    Button button01;
-    Button button02;
-    Button button03;
-    Button button04;
-    Button button05;
-    Button button06;
-    Button button07;
-    Button button08;
-    Button button10;
-    Button button11;
-    Button button12;
-    Button button13;
-    Button button14;
-    Button button15;
-    Button button16;
-    Button button17;
-    Button button18;
-    Button button20;
-    Button button21;
-    Button button22;
-    Button button23;
-    Button button24;
-    Button button25;
-    Button button26;
-    Button button27;
-    Button button28;
-    Button button30;
-    Button button31;
-    Button button32;
-    Button button33;
-    Button button34;
-    Button button35;
-    Button button36;
-    Button button37;
-    Button button38;
-    Button button40;
-    Button button41;
-    Button button42;
-    Button button43;
-    Button button44;
-    Button button45;
-    Button button46;
-    Button button47;
-    Button button48;
 
     private int counter = 1;
     private int playerTurn = 0;
@@ -91,7 +46,7 @@ public class GameStartController implements Initializable {
         Button b = (Button) event.getSource();
         String id = b.getId();
         Stage stage;
-        
+        boolean selectionDone = false;
         Parent root = FXMLLoader.load(getClass().getResource("GameStart.fxml"));
         if (id.equals("button24")) {  
             if (playerTurn >= 8 && player1Pass & player2Pass & player3Pass & player4Pass) {
@@ -100,12 +55,14 @@ public class GameStartController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);                
                 stage.show();
+                selectionDone = true;
                 
-            } else {
+                
+       } else {
                 System.out.println("You cant enter town yet!!!");
             }
         
-        } else {
+        } else if (!(player1Pass & player2Pass & player3Pass & player4Pass)) {
             String xlocation = id.substring(6,7);
             String ylocation = id.substring(7);
             int x = Integer.valueOf(xlocation);
@@ -118,7 +75,7 @@ public class GameStartController implements Initializable {
                     String color = Player1.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 } else if (counter == 2) {
-                     System.out.println("Player 3 pick land");
+                    System.out.println("Player 3 pick land");
                     String color = Player2.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                 } else if (counter == 3) {
@@ -220,9 +177,15 @@ public class GameStartController implements Initializable {
             playerTurn++;
         }
        }
-    }
         
+       
+    } 
+       
+       
+       
+    
         
+    
         
               
     @Override

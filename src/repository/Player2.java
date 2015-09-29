@@ -11,10 +11,10 @@ public class Player2 {
     private static String name;
     private static String race;
     private static String color;
-    private int money;
+    private static int money;
     public static final String[] races = {"Humanoid" , "Mechtron", "Spheroid", "Flapper"}; 
     public static final String[] colors = {"Blue" , "Red", "Green", "Orange"};
-    private int landNum;
+    private static int landNum;
     
     public Player2() {
         name = "aha";
@@ -24,7 +24,7 @@ public class Player2 {
         money -= 300;
         landNum++;
     }
-    public int getScore() {
+    public static int getScore() {
         return money + (landNum * 500);
         //Remember to add resources in later 
     }
@@ -49,5 +49,8 @@ public class Player2 {
     
     public boolean DaddyHasMoney() {
         return money >= 300;
+    }
+    public static void addMoney(double someMoney) {
+        money += someMoney;
     }
 }

@@ -50,7 +50,6 @@ public class Person3Controller implements Initializable {
             String name = text.getText();
             Player3.setName(name);
         }
-        Button b = (Button) event.getSource();
         b.setTextFill(Color.RED);
         Stage stage;
         Parent root = FXMLLoader.load(getClass().getResource("Person3.fxml"));

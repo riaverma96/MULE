@@ -18,7 +18,11 @@ import javafx.scene.control.Button;
  * @author dbrbbff7814
  */
 public class TownController implements Initializable {
-
+    
+    double timerScore;
+    double[] roundBonusIndex = {50, 50, 50, 100, 100, 100, 100, 150, 150, 
+            150, 150, 200}; 
+    int round = 1;
     /**
      * Initializes the controller class.
      */
@@ -32,24 +36,29 @@ public class TownController implements Initializable {
        
        while (timer.elapsedTime() < 50.0) {
            if (id.equals("pub")) {
-               double timePassed = timer.elapsedTime();
+               double timePassed = 50 - timer.elapsedTime();
                if (timePassed >= 37.0) {
-                   Player1.addMoney(250);
-                   System.out.println("You won $250");
+                   timerScore = 200;
                } else if (timePassed >= 25) {
-                   Player1.addMoney(200);
-                   System.out.println("You won $200");
+                   timerScore = 150; 
                } else if (timePassed >= 12) {
-                   Player1.addMoney(150);
-                   System.out.println("You won $150");
+                   timerScore = 100; 
                } else {
-                   Player1.addMoney(100);
-                   System.out.println("You won $100");
+                   timerScore = 50; 
                }
            }
         break; 
        }
-       System.out.println("Time is up ");
+       System.out.println("turn is over!");
+       //default round = 1
+       double roundBonus = roundBonusIndex[round - 1];
+       double moneyWon = roundBonus * timerScore;
+       
+       if(moneyWon > 250 ) {
+           moneyWon = 250;
+       }
+       System.out.println("Money Won is = " + moneyWon);
+       Player1.addMoney(moneyWon);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -7,6 +7,7 @@ package repository;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +47,8 @@ public class TownController implements Initializable {
                } else {
                    timerScore = 50; 
                }
+           } else if (id.equals("MULE")) {
+               buyMULE();
            }
         break; 
        }
@@ -60,6 +63,32 @@ public class TownController implements Initializable {
        System.out.println("Money Won is = " + moneyWon);
        Player1.addMoney(moneyWon);
     }
+    
+    public void buyMULE() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What type of MULE? Choose either Energy, Food or"
+                + " Ore?");
+        String choice = scanner.next();
+        String type = "";
+        
+        if (choice.equals("Energy") || choice.equals("energy")) {
+            type = "energy";
+        } else if (choice.equals("Food") || choice.equals("food")) {
+            type = "food";
+        } else if (choice.equals("Ore") || choice.equals("ore")) {
+            type = "ore";
+        } else {
+            System.out.println("Invalid type");
+        }
+        
+        checkMoney();        
+        
+    }
+    
+    public void checkMoney() {
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -22,7 +22,6 @@ import javafx.stage.Stage;
  * @author dbrbbff7814
  */
 public class GameStartController implements Initializable {
-    
 
     private int counter = 1;
     private int playerTurn = 0;
@@ -35,8 +34,7 @@ public class GameStartController implements Initializable {
     private Player2 player2 = new Player2();
     private Player3 player3 = new Player3();
     private Player4 player4 = new Player4();
-    
-
+    private MULE[][] mules = new MULE[5][9];
     
     /**
      * Initializes the controller class.

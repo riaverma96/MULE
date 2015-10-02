@@ -15,11 +15,21 @@ public class Player1 {
     public static final String[] races = {"Humanoid" , "Mechtron", "Spheroid", "Flapper"}; 
     public static final String[] colors = {"Blue" , "Red", "Green", "Orange"};
     private static int landNum;
+    private static boolean myTurn;
+    
+    public boolean myTurn() {
+        return myTurn;
+    }
+    
+    public void setMyTurn(boolean turn) {
+        myTurn = turn;
+    }
     
     public Player1() {
         name = "aha";
         money = 1000;
     }
+    
     public void buyLand() {
         money -= 300;
         landNum++;

@@ -17,11 +17,11 @@ public class Player3 {
     private static int landNum;
     private static boolean myTurn;
     
-    public boolean myTurn() {
+    public static boolean myTurn() {
         return myTurn;
     }
     
-    public void setMyTurn(boolean turn) {
+    public static void setMyTurn(boolean turn) {
         myTurn = turn;
     }
     

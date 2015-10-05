@@ -5,13 +5,18 @@
  */
 package repository;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,6 +29,7 @@ public class TownController implements Initializable {
     double[] roundBonusIndex = {50, 50, 50, 100, 100, 100, 100, 150, 150, 
             150, 150, 200}; 
     int round = 1;
+    
     /**
      * Initializes the controller class.
      */
@@ -83,6 +89,26 @@ public class TownController implements Initializable {
         
         checkMoney();        
         
+    }
+    
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    private void handleMapButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        String id = b.getId();
+        Stage stage;
+        if (id.equals("map")) {
+            GameStartController.resetButtons();
+            stage = (Stage) b.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass()
+                    .getResource("GameStart.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);                
+            stage.show();
+            
+        }
     }
     
     public void checkMoney() {

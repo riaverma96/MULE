@@ -19,5 +19,6 @@
     <Button fx:id="MULE" layoutX="310.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.49" prefHeight="149.0" prefWidth="280.0" text="Store" />
     <Button layoutX="14.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.56" prefHeight="149.0" prefWidth="280.0" text="Land Office" />
     <Button layoutX="310.0" layoutY="232.0" mnemonicParsing="false" opacity="0.47" prefHeight="149.0" prefWidth="280.0" text="Assay Office" />
+      <Button fx:id="map" layoutX="271.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleMapButton" text="Map" />
   </children>
 </AnchorPane>

@@ -10,5 +10,27 @@ package repository;
  * @author riaverma
  */
 public class MULE {
+    private String type;
+    private String owner;
     
+    public MULE(String type, String owner) {
+        this.type = type;
+        this.owner = owner;
+    }
+    
+    String getType() {
+        return type;
+    }
+    
+    void setType(String aType) {
+        type = aType;
+    }
+    
+    String getOwner() {
+        return owner;
+    }
+    
+    void setOwner(String aOwner) {
+        type = aOwner;
+    }
 }

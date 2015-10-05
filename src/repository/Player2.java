@@ -16,6 +16,41 @@ public class Player2 {
     public static final String[] colors = {"Blue" , "Red", "Green", "Orange"};
     private static int landNum;
     private static boolean myTurn;
+    private static int crystite;
+    private static int food;
+    private static int ore;
+    private static int energy;
+
+    public static void set_crystite(int a_crystite) {
+        crystite = a_crystite;
+    }
+    public static int get_crystite() {
+        return crystite;
+    }  
+    
+    //food
+    public static void set_food(int a_food) {
+        food = a_food;
+    }
+    public static int get_food() {
+        return food;
+    } 
+    
+    //ore
+    public static void set_ore(int a_ore) {
+        ore = a_ore;
+    }
+    public static int get_ore() {
+        return ore;
+    } 
+    
+    //energy
+    public static void set_energy(int a_energy) {
+        energy = a_energy;
+    }
+    public static int get_energy() {
+        return energy;
+    } 
     
     public static boolean myTurn() {
         return myTurn;

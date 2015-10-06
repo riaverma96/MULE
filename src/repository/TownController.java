@@ -66,16 +66,20 @@ public class TownController implements Initializable {
            }
         break; 
        }
-       System.out.println("turn is over!");
-       //default round = 1
-       double roundBonus = roundBonusIndex[round - 1];
-       double moneyWon = roundBonus * timerScore;
-       
-       if(moneyWon > 250 ) {
-           moneyWon = 250;
+       if (timer.elapsedTime() >= 50.0) {
+            System.out.println("turn is over!");
        }
-       System.out.println("Money Won is = " + moneyWon);
-       Player1.addMoney(moneyWon);
+       //default round = 1
+       if (id.equals("pub")) {
+        double roundBonus = roundBonusIndex[round - 1];
+        double moneyWon = roundBonus * timerScore;
+
+        if(moneyWon > 250 ) {
+            moneyWon = 250;
+        }
+        System.out.println("Money Won is = " + moneyWon);
+        Player1.addMoney(moneyWon);
+       }
     }
     
     /**

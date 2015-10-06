@@ -7,6 +7,8 @@ package repository;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.event.ActionEvent;
@@ -25,10 +27,14 @@ import javafx.stage.Stage;
  */
 public class TownController implements Initializable {
     
-    double timerScore;
-    double[] roundBonusIndex = {50, 50, 50, 100, 100, 100, 100, 150, 150, 
-            150, 150, 200}; 
-    int round = 1;
+    private double timerScore;
+    private double[] roundBonusIndex = {50, 50, 50, 100, 100, 100, 100, 150, 
+        150, 150, 150, 200}; 
+    private int round = 1;
+    // [0] = food; [1] = energy; [2] = ore; [3] = crystite; [4] = mule
+    private int[] store_resources = {16, 16, 0, 0, 25};
+    private int[] cost_of_resources = {30, 25, 50, 100, 100};
+    
     
     /**
      * Initializes the controller class.
@@ -96,7 +102,7 @@ public class TownController implements Initializable {
         System.out.println("Do you want to buy or sell?");
         String buy_or_sell = scanner.next();
         if (buy_or_sell.equals("Buy") || buy_or_sell.equals("buy")) {
-            
+            buy();
         } else if (buy_or_sell.equals("Sell") || buy_or_sell.equals("sell")) {
             sell();
         }
@@ -131,13 +137,340 @@ public class TownController implements Initializable {
         // TODO
     }    
  
+    private void buy() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Which resource do you want to buy? Crystite, Food,"
+                + "Ore or Energy?");
+        String resource = scanner.next();
+        
+        // inform user how many resourcs the store has
+        if (resource.equals("Crystite") || resource.equals("crystite")) {
+            System.out.println("The store currently has " 
+                + store_resources[3] + " crystite.");
+        } else if (resource.equals("Food") || resource.equals("food")) {
+            System.out.println("The store currently has " 
+                + store_resources[0] + " food.");
+        } else if (resource.equals("Ore") || resource.equals("ore")) {
+            System.out.println("The store currently has " 
+                + store_resources[2] + " ore.");
+        } else if (resource.equals("Energy") || resource.equals("energy")) {
+            System.out.println("The store currently has " 
+                + store_resources[1] + " energy.");
+        } else if (resource.equals("Mule") || resource.equals("mule")) {
+            System.out.println("The store currently has " 
+                + store_resources[4] + " energy.");
+        }
+        System.out.println("How much do you want to buy?");
+        int quantity = scanner.nextInt();
+        
+        if (Player1.myTurn()) {    
+            if (resource.equals("Crystite") || resource.equals("crystite")) {
+                if (store_resources[3] >= quantity 
+                        && (store_resources[3] * cost_of_resources[3]) 
+                        < Player1.getMoney()) {
+                    Player1.set_crystite(Player1.get_crystite() + quantity);
+                    Player1.addMoney(-(store_resources[3] 
+                            * cost_of_resources[3]));
+                } else {
+                    if (store_resources[3] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Food") || resource.equals("food")) {
+                if (store_resources[0] >= quantity 
+                        && (store_resources[0] * cost_of_resources[0]) 
+                        < Player1.getMoney()) {
+                    Player1.set_food(Player1.get_food() + quantity);
+                    Player1.addMoney(-(store_resources[0] 
+                            * cost_of_resources[0]));
+                } else {
+                    if (store_resources[0] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Ore") || resource.equals("ore")) {
+                if (store_resources[2] >= quantity 
+                        && (store_resources[2] * cost_of_resources[2]) 
+                        < Player1.getMoney()) {
+                    Player1.set_ore(Player1.get_ore() + quantity);
+                    Player1.addMoney(-(store_resources[2] 
+                            * cost_of_resources[2]));
+                } else {
+                    if (store_resources[2] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Energy") || resource.equals("energy")) {
+                if (store_resources[1] >= quantity 
+                        && (store_resources[1] * cost_of_resources[1]) 
+                        < Player1.getMoney()) {
+                    Player1.set_energy(Player1.get_energy() + quantity);
+                    Player1.addMoney(-(store_resources[1] 
+                            * cost_of_resources[1]));
+                } else {
+                    if (store_resources[1] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Mule") || resource.equals("mule") 
+                    || resource.equals("MULE")) {
+                if (store_resources[4] >= quantity 
+                        && (store_resources[4] * cost_of_resources[4]) 
+                        < Player1.getMoney()) {
+                    Player1.add_mule(quantity);
+                    Player1.addMoney(-(store_resources[4] 
+                            * cost_of_resources[4]));
+                } else {
+                    if (store_resources[4] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            }
+        } else if (Player2.myTurn()) {
+            if (resource.equals("Crystite") || resource.equals("crystite")) {
+                if (store_resources[3] >= quantity 
+                        && (store_resources[3] * cost_of_resources[3]) 
+                        < Player2.getMoney()) {
+                    Player2.set_crystite(Player2.get_crystite() + quantity);
+                    Player2.addMoney(-(store_resources[3] 
+                            * cost_of_resources[3]));
+                } else {
+                    if (store_resources[3] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Food") || resource.equals("food")) {
+                if (store_resources[0] >= quantity 
+                        && (store_resources[0] * cost_of_resources[0]) 
+                        < Player2.getMoney()) {
+                    Player2.set_food(Player2.get_food() + quantity);
+                    Player2.addMoney(-(store_resources[0] 
+                            * cost_of_resources[0]));
+                } else {
+                    if (store_resources[0] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Ore") || resource.equals("ore")) {
+                if (store_resources[2] >= quantity 
+                        && (store_resources[2] * cost_of_resources[2]) 
+                        < Player2.getMoney()) {
+                    Player2.set_ore(Player2.get_ore() + quantity);
+                    Player2.addMoney(-(store_resources[2] 
+                            * cost_of_resources[2]));
+                } else {
+                    if (store_resources[2] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Energy") || resource.equals("energy")) {
+                if (store_resources[1] >= quantity 
+                        && (store_resources[1] * cost_of_resources[1]) 
+                        < Player2.getMoney()) {
+                    Player2.set_energy(Player2.get_energy() + quantity);
+                    Player2.addMoney(-(store_resources[1] 
+                            * cost_of_resources[1]));
+                } else {
+                    if (store_resources[1] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Mule") || resource.equals("mule") 
+                    || resource.equals("MULE")) {
+                if (store_resources[4] >= quantity 
+                        && (store_resources[4] * cost_of_resources[4]) 
+                        < Player2.getMoney()) {
+                    Player2.add_mule(quantity);
+                    Player2.addMoney(-(store_resources[4] 
+                            * cost_of_resources[4]));
+                } else {
+                    if (store_resources[4] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            }
+        } else if (Player3.myTurn()) {
+            if (resource.equals("Crystite") || resource.equals("crystite")) {
+                if (store_resources[3] >= quantity 
+                        && (store_resources[3] * cost_of_resources[3]) 
+                        < Player3.getMoney()) {
+                    Player3.set_crystite(Player3.get_crystite() + quantity);
+                    Player3.addMoney(-(store_resources[3] 
+                            * cost_of_resources[3]));
+                } else {
+                    if (store_resources[3] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Food") || resource.equals("food")) {
+                if (store_resources[0] >= quantity 
+                        && (store_resources[0] * cost_of_resources[0]) 
+                        < Player3.getMoney()) {
+                    Player3.set_food(Player3.get_food() + quantity);
+                    Player3.addMoney(-(store_resources[0] 
+                            * cost_of_resources[0]));
+                } else {
+                    if (store_resources[0] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Ore") || resource.equals("ore")) {
+                if (store_resources[2] >= quantity 
+                        && (store_resources[2] * cost_of_resources[2]) 
+                        < Player3.getMoney()) {
+                    Player3.set_ore(Player3.get_ore() + quantity);
+                    Player3.addMoney(-(store_resources[2] 
+                            * cost_of_resources[2]));
+                } else {
+                    if (store_resources[2] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Energy") || resource.equals("energy")) {
+                if (store_resources[1] >= quantity 
+                        && (store_resources[1] * cost_of_resources[1]) 
+                        < Player3.getMoney()) {
+                    Player3.set_energy(Player3.get_energy() + quantity);
+                    Player3.addMoney(-(store_resources[1] 
+                            * cost_of_resources[1]));
+                } else {
+                    if (store_resources[1] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Mule") || resource.equals("mule") 
+                    || resource.equals("MULE")) {
+                if (store_resources[4] >= quantity 
+                        && (store_resources[4] * cost_of_resources[4]) 
+                        < Player3.getMoney()) {
+                    Player3.add_mule(quantity);
+                    Player3.addMoney(-(store_resources[4] 
+                            * cost_of_resources[4]));
+                } else {
+                    if (store_resources[4] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            }
+        } else if (Player4.myTurn()) {
+            if (resource.equals("Crystite") || resource.equals("crystite")) {
+                if (store_resources[3] >= quantity 
+                        && (store_resources[3] * cost_of_resources[3]) 
+                        < Player4.getMoney()) {
+                    Player4.set_crystite(Player4.get_crystite() + quantity);
+                    Player4.addMoney(-(store_resources[3] 
+                            * cost_of_resources[3]));
+                } else {
+                    if (store_resources[3] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Food") || resource.equals("food")) {
+                if (store_resources[0] >= quantity 
+                        && (store_resources[0] * cost_of_resources[0]) 
+                        < Player4.getMoney()) {
+                    Player4.set_food(Player4.get_food() + quantity);
+                    Player4.addMoney(-(store_resources[0] 
+                            * cost_of_resources[0]));
+                } else {
+                    if (store_resources[0] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Ore") || resource.equals("ore")) {
+                if (store_resources[2] >= quantity 
+                        && (store_resources[2] * cost_of_resources[2]) 
+                        < Player4.getMoney()) {
+                    Player4.set_ore(Player4.get_ore() + quantity);
+                    Player4.addMoney(-(store_resources[2] 
+                            * cost_of_resources[2]));
+                } else {
+                    if (store_resources[2] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Energy") || resource.equals("energy")) {
+                if (store_resources[1] >= quantity 
+                        && (store_resources[1] * cost_of_resources[1]) 
+                        < Player4.getMoney()) {
+                    Player4.set_energy(Player4.get_energy() + quantity);
+                    Player4.addMoney(-(store_resources[1] 
+                            * cost_of_resources[1]));
+                } else {
+                    if (store_resources[1] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            } else if (resource.equals("Mule") || resource.equals("mule") 
+                    || resource.equals("MULE")) {
+                if (store_resources[4] >= quantity 
+                        && (store_resources[4] * cost_of_resources[4]) 
+                        < Player4.getMoney()) {
+                    Player4.add_mule(quantity);
+                    Player4.addMoney(-(store_resources[4] 
+                            * cost_of_resources[4]));
+                } else {
+                    if (store_resources[4] >= quantity) {
+                        System.out.println("Sorry! "
+                                + "Store doesn't have enough resources!");
+                    }  
+                    System.out.println("You don't have enough money!");
+                }
+            }
+        }
+        
+        
+        
+            
+        
+    }
+    
+    // forgot to sell MULES <--fix
     private void sell() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Which resource do you want to sell? Crystite, Food,"
                 + "Ore or Energy?");
         String resource = scanner.next();
-        // inform user how many resourcs he has
         
+        // inform user how many resourcs he has
         if(Player1.myTurn()) {
             if (resource.equals("Crystite") || resource.equals("crystite")) {
                 System.out.println("You currently have " + Player1.get_crystite() 

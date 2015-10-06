@@ -20,6 +20,7 @@ public class Player4 {
     private static int food;
     private static int ore;
     private static int energy;
+    private static int mule;
 
     public static void set_crystite(int a_crystite) {
         crystite = a_crystite;
@@ -51,6 +52,15 @@ public class Player4 {
     public static int get_energy() {
         return energy;
     } 
+    
+    //mule
+    public static void add_mule(int difference) {
+        mule += difference;
+    }
+    
+    public static int get_mule() {
+        return mule;
+    }
     
     public static boolean myTurn() {
         return myTurn;
@@ -93,6 +103,9 @@ public class Player4 {
     
     public boolean DaddyHasMoney() {
         return money >= 300;
+    }
+    public static int getMoney() {
+        return money;
     }
     public static void addMoney(double someMoney) {
         money += someMoney;

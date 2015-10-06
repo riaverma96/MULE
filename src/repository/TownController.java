@@ -34,7 +34,8 @@ public class TownController implements Initializable {
     // [0] = food; [1] = energy; [2] = ore; [3] = crystite; [4] = mule
     private int[] store_resources = {16, 16, 0, 0, 25};
     private int[] cost_of_resources = {30, 25, 50, 100, 100};
-    
+    // [0] = food; [1] = energy; [3] = ore
+    private int[] cost_of_mules = {125, 150, 175};
     
     /**
      * Initializes the controller class.
@@ -99,6 +100,7 @@ public class TownController implements Initializable {
     
     private void go_to_store() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the store!");
         System.out.println("Do you want to buy or sell?");
         String buy_or_sell = scanner.next();
         if (buy_or_sell.equals("Buy") || buy_or_sell.equals("buy")) {
@@ -106,8 +108,21 @@ public class TownController implements Initializable {
             String buy_type = scanner.next();
             if (buy_type.equals("mule") || buy_type.equals("Mule")
                     || buy_type.equals("MULE")) {
+                // checks if MULE is in-stock
+                if (store_resources[4] < 1) {
+                    System.out.println("Sorry! There are no more MULES "
+                            + "in the store");
+                    System.out.println("If you would like to buy resources "
+                            + "instead click '1' otherwise to end your turn "
+                            + "click '2'");
+                    String no_mules = scanner.next();
+                    if (no_mules.equals("1")) {
+                        buy_resources();
+                    } else {
+                        return;
+                    }
+                }
                 buy_mule();
-                buy_resources();
             } else if (buy_type.equals("resources") 
                     || buy_type.equals("Resources")) {
                 buy_resources();
@@ -119,28 +134,89 @@ public class TownController implements Initializable {
     }
 
     private void buy_mule() {
+        // pre-req: there is at least 1 mule in the store
         Scanner scanner = new Scanner(System.in);
-        System.out.println("What type of MULE? Choose either Energy, Food or"
-                + " Ore?");
-        String choice = scanner.next();
-        String type = "";
+        System.out.println("Buying a MULE 101:");
+        System.out.println(" -----------------------------");
+        System.out.println("|    TYPE        |   COST     |");
+        System.out.println("|----------------|------------|");
+        System.out.println("|    Food        |   125      |");
+        System.out.println("|    Energy      |   150      |");
+        System.out.println("|    Ore         |   175      |");
+        System.out.println(" -----------------------------");
+        System.out.println("There are " + store_resources[4] 
+                + " MULES available to buy.");
         
-        if (choice.equals("Energy") || choice.equals("energy")) {
-            type = "energy";
-        } else if (choice.equals("Food") || choice.equals("food")) {
-            type = "food";
-        } else if (choice.equals("Ore") || choice.equals("ore")) {
-            type = "ore";
-        } else {
-            System.out.println("Invalid type");
+        // tells Player how much money he has
+        if (Player1.myTurn()) {
+            System.out.println("You have " + Player1.getMoney() + " money.");
+        } else if (Player2.myTurn()) {
+            System.out.println("You have " + Player2.getMoney() + " money.");
+        } else if (Player3.myTurn()) {
+            System.out.println("You have " + Player3.getMoney() + " money.");
+        } else if (Player4.myTurn()) {
+            System.out.println("You have " + Player4.getMoney() + " money.");
         }
         
-        checkMoney();        
+        // MULE type selection
+        System.out.println("What type of MULE would you like to buy?"
+                + " Choose either a Food, Energy, Ore or Crystite MULE?");
+        String choice = scanner.next();
         
+        // final purchase price
+        int cost = 100;
+        int index_of_type = -1;
+        if (choice.equals("Food") || choice.equals("food")) {
+            cost += 25;
+            index_of_type = 0;
+        } else if (choice.equals("Energy") || choice.equals("energy")) {
+            cost += 50;
+            index_of_type = 1;
+        } else if (choice.equals("Ore") || choice.equals("ore")) {
+            cost += 75;
+            index_of_type = 2;
+        } else {
+            System.out.println("Invalid type");
+            return;
+        }
+
+        // checks if player has enough money 
+        int purchase_price = 0;
+        if (Player1.myTurn()) {
+            if (cost < Player1.getMoney()) {
+                Player1.activate_mule(true);
+                store_resources[4] -= 1;
+                Player1.add_mule(1);
+                purchase_price = cost_of_mules[index_of_type];
+                Player1.addMoney(-(purchase_price));
+            }
+        } else if (Player2.myTurn()) {
+            if (cost < Player1.getMoney()) {
+                Player2.activate_mule(true);
+                store_resources[4] -= 1;
+                Player1.add_mule(1);
+                purchase_price = cost_of_mules[index_of_type];
+                Player1.addMoney(-(purchase_price));
+            }
+        } else if (Player3.myTurn()) {
+            if (cost < Player3.getMoney()) {
+                Player3.activate_mule(true);
+                store_resources[4] -= 1;
+                Player1.add_mule(1);
+                purchase_price = cost_of_mules[index_of_type];
+                Player1.addMoney(-(purchase_price));
+            }
+        } else if (Player4.myTurn()) {
+            if (cost < Player4.getMoney()) {
+                Player4.activate_mule(true);
+                store_resources[4] -= 1;
+                Player1.add_mule(1);
+                purchase_price = cost_of_mules[index_of_type];
+                Player1.addMoney(-(purchase_price));
+            }
+        } 
     }
-    public void checkMoney() {
-        
-    }
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

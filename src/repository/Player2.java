@@ -21,6 +21,15 @@ public class Player2 {
     private static int ore;
     private static int energy;
     private static int mule;
+    private static boolean mule_sprite;
+    
+    public static void activate_mule(boolean b) {
+        mule_sprite = b;
+    }
+    
+    public static boolean is_mule_active() {
+        return mule_sprite;
+    }
 
     public static void set_crystite(int a_crystite) {
         crystite = a_crystite;

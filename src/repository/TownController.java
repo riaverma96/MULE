@@ -121,13 +121,14 @@ public class TownController implements Initializable {
                     } else {
                         return;
                     }
+                } else {
+                    buy_mule();
                 }
-                buy_mule();
+                
             } else if (buy_type.equals("resources") 
                     || buy_type.equals("Resources")) {
                 buy_resources();
             }
-            buy_resources();
         } else if (buy_or_sell.equals("Sell") || buy_or_sell.equals("sell")) {
             sell();
         }
@@ -189,30 +190,34 @@ public class TownController implements Initializable {
                 Player1.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
                 Player1.addMoney(-(purchase_price));
+                System.out.println("You have purchased a MULE!");
             }
         } else if (Player2.myTurn()) {
             if (cost < Player1.getMoney()) {
                 Player2.activate_mule(true);
                 store_resources[4] -= 1;
-                Player1.add_mule(1);
+                Player2.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
-                Player1.addMoney(-(purchase_price));
+                Player2.addMoney(-(purchase_price));
+                System.out.println("You have purchased a MULE!");
             }
         } else if (Player3.myTurn()) {
             if (cost < Player3.getMoney()) {
                 Player3.activate_mule(true);
                 store_resources[4] -= 1;
-                Player1.add_mule(1);
+                Player3.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
-                Player1.addMoney(-(purchase_price));
+                Player3.addMoney(-(purchase_price));
+                System.out.println("You have purchased a MULE!");
             }
         } else if (Player4.myTurn()) {
             if (cost < Player4.getMoney()) {
                 Player4.activate_mule(true);
                 store_resources[4] -= 1;
-                Player1.add_mule(1);
+                Player4.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
-                Player1.addMoney(-(purchase_price));
+                Player4.addMoney(-(purchase_price));
+                System.out.println("You have purchased a MULE!");
             }
         } 
     }

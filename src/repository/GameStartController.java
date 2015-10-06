@@ -198,17 +198,17 @@ public class GameStartController implements Initializable {
             Player2.setMyTurn(false);
             Player3.setMyTurn(false);
             Player4.setMyTurn(false);
-        } else if(player.equals("player1")) {
+        } else if(player.equals("player2")) {
             Player1.setMyTurn(false);
             Player2.setMyTurn(true);
             Player3.setMyTurn(false);
             Player4.setMyTurn(false);
-        } else if(player.equals("player1")) {
+        } else if(player.equals("player3")) {
             Player1.setMyTurn(false);
             Player2.setMyTurn(false);
             Player3.setMyTurn(true);
             Player4.setMyTurn(false);
-        } else if(player.equals("player1")) {
+        } else if(player.equals("player4")) {
             Player1.setMyTurn(false);
             Player2.setMyTurn(false);
             Player3.setMyTurn(false);

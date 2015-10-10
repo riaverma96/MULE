@@ -26,10 +26,12 @@ public class GameStartController implements Initializable {
     private int counter = 1;
     private int playerTurn = 0;
     private boolean[][] clicked = new boolean[5][9]; 
-    private boolean player1Pass = false;
-    private boolean player2Pass = false;
-    private boolean player3Pass = false;
-    private boolean player4Pass = false;
+    private boolean player1Pass;
+    private boolean player2Pass;
+    private boolean player3Pass;
+    private boolean player4Pass;
+    private boolean townEnter = false;
+    private boolean initialBuy;
     private Player1 player1 = new Player1();
     private Player2 player2 = new Player2();
     private Player3 player3 = new Player3();
@@ -37,22 +39,29 @@ public class GameStartController implements Initializable {
     private MULE[][] mules = new MULE[5][9];
     private static Button[][] button_array = new Button[5][9];
     private static String[][] color_array = new String[5][9];
+    private Button b = new Button();
+    private String id;
     
     /**
      * Initializes the controller class.
      */
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();
-        String id = b.getId();
+        if (player1Pass && player2Pass && player3Pass && player4Pass){
+            townEnter = true;
+            Player1.setInitialLandSelectionTrue();
+            Player2.setInitialLandSelectionTrue();
+            Player3.setInitialLandSelectionTrue();
+            Player4.setInitialLandSelectionTrue();
+        }
+        b = (Button) event.getSource();
+        id = b.getId();
         Stage stage;
         boolean selectionDone = false;
         Parent root = FXMLLoader.load(getClass().getResource("GameStart.fxml"));
-        
         if (id.equals("button24")) {  
             // player is trying to enter town
-            if (playerTurn >= 8 && player1Pass & player2Pass 
-                    & player3Pass & player4Pass) {
+            if (townEnter) {
                 // everyone passed for one round
                 stage = (Stage) b.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("Town.fxml"));
@@ -63,14 +72,22 @@ public class GameStartController implements Initializable {
             } else {
                 System.out.println("You cant enter town yet!!!");
             }
-        } else if (!(player1Pass & player2Pass & player3Pass & player4Pass)) {
-            String xlocation = id.substring(6,7);
+        } else if (!townEnter && !initialBuy) {
+            buyInitialLand();
+        }
+    }
+//       if (playerTurn > 13 || counter > 13) {
+//           resetButtons();
+//       }
+    
+
+    private void buyInitialLand() {
+    String xlocation = id.substring(6,7);
             String ylocation = id.substring(7);
             int x = Integer.valueOf(xlocation);
             int y = Integer.valueOf(ylocation);
             button_array[x][y] = b;
-            if (clicked[x][y] == false && playerTurn < 8) {
-                
+            if (clicked[x][y] == false && playerTurn < 8) {        
                 if (counter == 1) {
                     System.out.println("Player 2 pick land");
                     String color = Player1.getColor();
@@ -104,7 +121,7 @@ public class GameStartController implements Initializable {
                 counter = 1;
             }
             playerTurn++;
-                clicked[x][y] = true;
+            clicked[x][y] = true;
                 
             } else {
                 if (counter == 1) {
@@ -186,12 +203,7 @@ public class GameStartController implements Initializable {
             }
             playerTurn++;
         }
-       }
-//       if (playerTurn > 13 || counter > 13) {
-//           resetButtons();
-//       }
-    } 
-    
+    }
     private void setPlayerTurn(String player) {
         if(player.equals("player1")) {
             Player1.setMyTurn(true);
@@ -216,7 +228,6 @@ public class GameStartController implements Initializable {
         }
     }
        
-    
     public static void resetButtons() {
         for (int i = 0; i < 5; i++) {
            for (int j = 0; j < 9; j++) {
@@ -234,7 +245,10 @@ public class GameStartController implements Initializable {
           
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        player1Pass = Player1.getInitialLandSelection();
+        player2Pass = Player2.getInitialLandSelection();
+        player3Pass = Player3.getInitialLandSelection();
+        player4Pass = Player4.getInitialLandSelection();
 
     }    
     

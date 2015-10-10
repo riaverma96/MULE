@@ -22,6 +22,14 @@ public class Player1 {
     private static int energy;
     private static int mule;
     private static boolean mule_sprite;
+    private static boolean initialLandSelection = false;
+    
+    public static void setInitialLandSelectionTrue() {
+        initialLandSelection = true;
+    }
+    public static boolean getInitialLandSelection() {
+        return initialLandSelection;
+    }
     
     public static void activate_mule(boolean b) {
         mule_sprite = b;

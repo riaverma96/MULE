@@ -37,8 +37,8 @@ public class GameStartController implements Initializable {
     private Player3 player3 = new Player3();
     private Player4 player4 = new Player4();
     private MULE[][] mules = new MULE[5][9];
-    private static Button[][] button_array = new Button[5][9];
-    private static String[][] color_array = new String[5][9];
+    private static Button[][] button_array;
+    private static String[][] color_array;
     private Button b = new Button();
     private String id;
     
@@ -79,32 +79,29 @@ public class GameStartController implements Initializable {
 //       if (playerTurn > 13 || counter > 13) {
 //           resetButtons();
 //       }
-    
-
     private void buyInitialLand() {
     String xlocation = id.substring(6,7);
             String ylocation = id.substring(7);
             int x = Integer.valueOf(xlocation);
             int y = Integer.valueOf(ylocation);
-            button_array[x][y] = b;
             if (clicked[x][y] == false && playerTurn < 8) {        
                 if (counter == 1) {
                     System.out.println("Player 2 pick land");
                     String color = Player1.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    color_array[x][y] = color;
+                    MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player1");
                 } else if (counter == 2) {
                     System.out.println("Player 3 pick land");
                     String color = Player2.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    color_array[x][y] = color;
+                    MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player2");
                 } else if (counter == 3) {
                     System.out.println("Player 4 pick land");
                     String color = Player3.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    color_array[x][y] = color;
+                    MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player3");
                 } else if (counter == 4) {
                     if (playerTurn < 7) {
@@ -113,7 +110,7 @@ public class GameStartController implements Initializable {
                     }
                     String color = Player4.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    color_array[x][y] = color;
+                    MapTile.recordBuy(x, y, b, color);
                 }
             counter++;
 
@@ -249,7 +246,7 @@ public class GameStartController implements Initializable {
         player2Pass = Player2.getInitialLandSelection();
         player3Pass = Player3.getInitialLandSelection();
         player4Pass = Player4.getInitialLandSelection();
-
-    }    
-    
+        button_array = MapTile.getButtonArray();
+        color_array = MapTile.getColorArray();
+    }        
 }

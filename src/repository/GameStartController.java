@@ -31,23 +31,23 @@ public class GameStartController implements Initializable {
     private boolean player4Pass;
     private boolean townEnter = false;
     private boolean initialBuy;
-    private Player1 player1 = new Player1();
-    private Player2 player2 = new Player2();
-    private Player3 player3 = new Player3();
-    private Player4 player4 = new Player4();
+    private static Player1 player1 = new Player1();
+    private static Player2 player2 = new Player2();
+    private static Player3 player3 = new Player3();
+    private static Player4 player4 = new Player4();
     private MULE[][] mules = new MULE[5][9];
     private static Button[][] button_array;
     private static String[][] color_array;
     private Button b = new Button();
     private String id;
     Stage stage;
-    public String[][] mapTypeArray = new String[][]{
+    public static String[][] mapTypeArray = new String[][]{
         {"P", "P", "M1", "P", "R", "P", "M3", "P", "P"},
         {"P", "M1", "P", "P", "R", "P", "P", "P", "M3"},
         {"M3", "P", "P", "P", "TOWN", "P", "P", "P", "M1"},
         {"P", "M2", "P", "P", "R", "P", "M2", "P", "P"},
         {"P", "P", "M2", "P", "R", "P", "P", "P", "M2"}};
-    public String[][] playerOwnedArray = new String[5][9];
+    public static String[][] playerOwnedArray = new String[5][9];
     /**
      * Initializes the controller class.
      */
@@ -132,6 +132,7 @@ public class GameStartController implements Initializable {
                 
             } else {
                 if (counter == 1) {
+                    setPlayerTurn("player1");
                     Stage newstage = (Stage) b.getScene().getWindow();
                     AlertBox box = new AlertBox(newstage, "Land Selection");
                     int choice = box.getAnswer(); 
@@ -151,6 +152,7 @@ public class GameStartController implements Initializable {
                             player1Pass = true;
                         }
              } else if (counter == 2) {
+                        setPlayerTurn("player2");
                         Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -170,6 +172,7 @@ public class GameStartController implements Initializable {
                             player2Pass = true;
                         }
               } else if (counter == 3) {
+                        setPlayerTurn("player3");
                         Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -189,6 +192,7 @@ public class GameStartController implements Initializable {
                             player3Pass = true;
                         }
             } else {
+                  setPlayerTurn("player4");
                   Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -213,9 +217,11 @@ public class GameStartController implements Initializable {
                 counter = 1;
             }
             playerTurn++;
+            //the following line added for demo purposes only
+            setPlayerTurn("player1");
         }
     }
-    private void setPlayerTurn(String player) {
+    public void setPlayerTurn(String player) {
         if(player.equals("player1")) {
             Player1.setMyTurn(true);
             Player2.setMyTurn(false);
@@ -262,5 +268,18 @@ public class GameStartController implements Initializable {
         player4Pass = Player4.getInitialLandSelection();
         button_array = MapTile.getButtonArray();
         color_array = MapTile.getColorArray();
-    }        
+    }
+    
+    public static Player1 getPlayer1() {
+        return player1;
+    }
+    public static Player2 getPlayer2() {
+        return player2;
+    }
+    public static Player3 getPlayer3() {
+        return player3;
+    }
+    public static Player4 getPlayer4() {
+        return player4;
+    }
 }

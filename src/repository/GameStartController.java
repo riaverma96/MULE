@@ -47,6 +47,7 @@ public class GameStartController implements Initializable {
         {"M3", "P", "P", "P", "TOWN", "P", "P", "P", "M1"},
         {"P", "M2", "P", "P", "R", "P", "M2", "P", "P"},
         {"P", "P", "M2", "P", "R", "P", "P", "P", "M2"}};
+    public String[][] playerOwnedArray = new String[5][9];
     /**
      * Initializes the controller class.
      */
@@ -96,18 +97,21 @@ public class GameStartController implements Initializable {
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                     MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player1");
+                    playerOwnedArray[x][y] = "Player 1";
                 } else if (counter == 2) {
                     System.out.println("Player 3 pick land");
                     String color = Player2.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                     MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player2");
+                    playerOwnedArray[x][y] = "Player 2";
                 } else if (counter == 3) {
                     System.out.println("Player 4 pick land");
                     String color = Player3.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                     MapTile.recordBuy(x, y, b, color);
                     setPlayerTurn("player3");
+                    playerOwnedArray[x][y] = "Player 3";
                 } else if (counter == 4) {
                     if (playerTurn < 7) {
                          System.out.println("Player 1 pick land");
@@ -116,6 +120,7 @@ public class GameStartController implements Initializable {
                     String color = Player4.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                     MapTile.recordBuy(x, y, b, color);
+                    playerOwnedArray[x][y] = "Player 4";
                 }
             counter++;
 
@@ -136,6 +141,7 @@ public class GameStartController implements Initializable {
                             b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                             player1.buyLand();
                             clicked[x][y] = true;
+                            playerOwnedArray[x][y] = "Player 1";
                         } else {
                             System.out.println("You dont have money");
                             player1Pass = true;
@@ -154,6 +160,7 @@ public class GameStartController implements Initializable {
                                 b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player2.buyLand();
                                 clicked[x][y] = true;
+                                playerOwnedArray[x][y] = "Player 2";
                             } else {
                                 System.out.println("You dont have money");
                                 player2Pass = true;
@@ -172,6 +179,7 @@ public class GameStartController implements Initializable {
                                 b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
                                 player3.buyLand();
                                 clicked[x][y] = true;
+                                playerOwnedArray[x][y] = "Player 3";
                             } else {
                                 System.out.println("You dont have money");
                                 player3Pass = true;
@@ -190,6 +198,7 @@ public class GameStartController implements Initializable {
                                 b.setStyle("-fx-background-color: " + color 
                                         + "; -fx-text-fill: white;");
                                 player4.buyLand();
+                                playerOwnedArray[x][y] = "Player 4";
                             } else {
                                 System.out.println("You dont have money");
                                 player4Pass = true;

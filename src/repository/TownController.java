@@ -7,10 +7,13 @@ package repository;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -36,7 +40,8 @@ public class TownController implements Initializable {
     private int[] cost_of_resources = {30, 25, 50, 100, 100};
     // [0] = food; [1] = energy; [3] = ore
     private int[] cost_of_mules = {125, 150, 175};
-    
+    public static boolean enteredTown;
+    Stage thisStage;
     /**
      * Initializes the controller class.
      */
@@ -44,7 +49,7 @@ public class TownController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         Button b = (Button) event.getSource();
         String id = b.getId();
-
+        thisStage = (Stage) b.getScene().getWindow();
         Stopwatch timer = new Stopwatch();
     
        
@@ -89,27 +94,23 @@ public class TownController implements Initializable {
     private void handleMapButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
         String id = b.getId();
-        Stage stage;
+        Stage stage = (Stage) b.getScene().getWindow();
         if (id.equals("map")) {
-            GameStartController.resetButtons();
-            stage = (Stage) b.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass()
-                    .getResource("GameStart.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);                
-            stage.show();
+            enteredTown = true;
+            stage.close();
             
         }
     }
     
     private void go_to_store() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the store!");
-        System.out.println("Do you want to buy or sell?");
-        String buy_or_sell = scanner.next();
+        storePopup box = new storePopup(thisStage, "Welcome to the store!");
+        
+        String buy_or_sell = box.getAnswer();
         if (buy_or_sell.equals("Buy") || buy_or_sell.equals("buy")) {
-            System.out.println("Do you want to buy a mule or resources?");
-            String buy_type = scanner.next();
+  
+            storeBuyQuestion b1 = new storeBuyQuestion(thisStage, "Welcome to the store!");
+            String buy_type = b1.getAnswer();
             if (buy_type.equals("mule") || buy_type.equals("Mule")
                     || buy_type.equals("MULE")) {
                 // checks if MULE is in-stock
@@ -140,7 +141,7 @@ public class TownController implements Initializable {
 
     private void buy_mule() {
         // pre-req: there is at least 1 mule in the store
-        Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Buying a MULE 101:");
         System.out.println(" -----------------------------");
         System.out.println("|    TYPE        |   COST     |");
@@ -166,7 +167,8 @@ public class TownController implements Initializable {
         // MULE type selection
         System.out.println("What type of MULE would you like to buy?"
                 + " Choose either a Food, Energy, Ore or Crystite MULE?");
-        String choice = scanner.next();
+        muleType popup = new muleType(thisStage, "Pick your mule");
+        String choice = popup.getAnswer();
         
         // final purchase price
         int cost = 100;
@@ -234,9 +236,8 @@ public class TownController implements Initializable {
  
     private void buy_resources() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Which resource do you want to buy? Crystite, Food,"
-                + "Ore or Energy?");
-        String resource = scanner.next();
+        resourceType type = new resourceType(thisStage, "Pick your resource!");
+        String resource = type.getAnswer();
         
         // inform user how many resourcs the store has
         if (resource.equals("Crystite") || resource.equals("crystite")) {
@@ -511,9 +512,8 @@ public class TownController implements Initializable {
     
     private void sell() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Which resource do you want to sell? Crystite, Food,"
-                + "Ore or Energy?");
-        String resource = scanner.next();
+        resourceType type = new resourceType(thisStage, "Which resource would you like to sell?");
+        String resource = type.getAnswer();
         
         // inform user how many resourcs he has
         if(Player1.myTurn()) {
@@ -530,7 +530,13 @@ public class TownController implements Initializable {
                 System.out.println("You currently have " + Player1.get_energy() 
                         + " energy.");
             }
+            
+             
+            
+            
+  
 
+            
             System.out.println("How much do you want to sell?");
             int quantity = scanner.nextInt();
             if (resource.equals("Crystite") || resource.equals("crystite")) {

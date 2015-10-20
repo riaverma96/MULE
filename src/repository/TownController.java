@@ -108,6 +108,7 @@ public class TownController implements Initializable {
     private void resourceProduction() {
         if (GameStartController.getPlayer1().myTurn()) {
             if (GameStartController.getPlayer1().get_energy() < 1) {
+                productionMessage m1 = new productionMessage(thisStage, "Message");
                 System.out.println("Not enough energy for production");
             } else {
                 GameStartController.getPlayer1().set_energy(
@@ -152,6 +153,7 @@ public class TownController implements Initializable {
   
             storeBuyQuestion b1 = new storeBuyQuestion(thisStage, "Welcome to the store!");
             String buy_type = b1.getAnswer();
+            System.out.println(buy_type);
             if (buy_type.equals("mule") || buy_type.equals("Mule")
                     || buy_type.equals("MULE")) {
                 // checks if MULE is in-stock
@@ -276,7 +278,7 @@ public class TownController implements Initializable {
     }    
  
     private void buy_resources() {
-        muleType type = new muleType(thisStage, "Pick your resource!");
+        resourceType type = new resourceType(thisStage, "Pick your resource!");
         String resource = type.getAnswer();
         Scanner scanner = new Scanner(System.in);
         
@@ -299,7 +301,7 @@ public class TownController implements Initializable {
                 + store_resources[4] + " energy.");
         }
         System.out.println("How much do you want to buy?");
-        int quantity = scanner.nextInt();
+        int quantity = question.getNumberAnswer();
         
         if (Player1.myTurn()) {    
             if (resource.equals("Crystite") || resource.equals("crystite")) {

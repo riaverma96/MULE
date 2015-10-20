@@ -59,11 +59,11 @@ public class storeBuyQuestion extends Stage {
         });
 
 
-        Button no = new Button("Resource");
+        Button no = new Button("Resources");
         no.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                answer = "Resource";
+                answer = "Resources";
                 stage.close(); 
             }
 

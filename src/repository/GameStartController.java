@@ -36,18 +36,23 @@ public class GameStartController implements Initializable {
     private Player3 player3 = new Player3();
     private Player4 player4 = new Player4();
     private MULE[][] mules = new MULE[5][9];
-    private static Button[][] button_array;
-    private static String[][] color_array;
+    private static Button[][] button_array = new Button[5][9];
+    private static String[][] color_array = new String[5][9];
     private Button b = new Button();
     private String id;
     Stage stage;
-    public String[][] mapTypeArray = new String[][]{
+    public static String[][] mapTypeArray = new String[][]{
         {"P", "P", "M1", "P", "R", "P", "M3", "P", "P"},
         {"P", "M1", "P", "P", "R", "P", "P", "P", "M3"},
         {"M3", "P", "P", "P", "TOWN", "P", "P", "P", "M1"},
         {"P", "M2", "P", "P", "R", "P", "M2", "P", "P"},
         {"P", "P", "M2", "P", "R", "P", "P", "P", "M2"}};
-    public String[][] playerOwnedArray = new String[5][9];
+    public static String[][] playerOwnedArray = new String[5][9];
+    String xlocation;
+    String ylocation;
+    int x;
+    int y;
+    
     /**
      * Initializes the controller class.
      */
@@ -60,8 +65,13 @@ public class GameStartController implements Initializable {
             Player3.setInitialLandSelectionTrue();
             Player4.setInitialLandSelectionTrue();
         }
+        
         b = (Button) event.getSource();
         id = b.getId();
+        xlocation = id.substring(6,7);
+        ylocation = id.substring(7);
+        x = Integer.valueOf(xlocation);
+        y = Integer.valueOf(ylocation);
         
         boolean selectionDone = false;
         Parent root = FXMLLoader.load(getClass().getResource("GameStart.fxml"));
@@ -81,35 +91,195 @@ public class GameStartController implements Initializable {
         } else if (!townEnter && !initialBuy) {
             buyInitialLand();
         }
+        
+        //get MULE image to show up
+        setMule();
     }
-//       if (playerTurn > 13 || counter > 13) {
-//           resetButtons();
-//       }
+    
+    private void setMule() {
+        if (Player1.myTurn() && Player1.getYNNewMule()) {
+            MULE m = Player1.placeMule();
+            if (playerOwnedArray[x][y].equals("Player 1")) {
+                if (Player1.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_RED.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
+                    }
+                } else if (Player1.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
+                    }
+                } else if (Player1.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
+                    }
+                } else if (Player1.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
+                    }
+                }
+                mules[x][y] = Player1.placeMule();
+                Player1.noNewMule();
+            }
+        } else if (Player2.myTurn() && Player2.getYNNewMule()) {
+            MULE m = Player2.placeMule();
+            if (playerOwnedArray[x][y].equals("Player 2")) {
+                if (Player2.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_RED.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
+                    }
+                } else if (Player2.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
+                    }
+                } else if (Player2.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
+                    }
+                } else if (Player2.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
+                    }
+                }
+                mules[x][y] = Player2.placeMule();
+                Player2.noNewMule();
+            }
+        } else if (Player3.myTurn() && Player3.getYNNewMule()) {
+            MULE m = Player3.placeMule();
+            if (playerOwnedArray[x][y].equals("Player 3")) {
+                if (Player3.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_RED.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
+                    }
+                } else if (Player3.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
+                    }
+                } else if (Player3.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
+                    }
+                } else if (Player3.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
+                    }
+                }
+                mules[x][y] = Player3.placeMule();
+                Player3.noNewMule();
+            }
+        } else if (Player4.myTurn() && Player4.getYNNewMule()) {
+            MULE m = Player4.placeMule();
+            if (playerOwnedArray[x][y].equals("Player 4")) {
+                if (Player4.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_RED.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
+                    }
+                } else if (Player4.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
+                    }
+                } else if (Player4.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
+                    }
+                } else if (Player4.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
+                    }
+                }
+                mules[x][y] = Player4.placeMule();
+                Player4.noNewMule();
+            }
+        }
+    }
+    
     private void buyInitialLand() {
-    String xlocation = id.substring(6,7);
-            String ylocation = id.substring(7);
-            int x = Integer.valueOf(xlocation);
-            int y = Integer.valueOf(ylocation);
             if (clicked[x][y] == false && playerTurn < 8) {        
                 if (counter == 1) {
                     System.out.println("Player 2 pick land");
                     String color = Player1.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    MapTile.recordBuy(x, y, b, color);
+                    button_array[x][y] = b;
+                    color_array[x][y] = color;
                     setPlayerTurn("player1");
                     playerOwnedArray[x][y] = "Player 1";
                 } else if (counter == 2) {
                     System.out.println("Player 3 pick land");
                     String color = Player2.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    MapTile.recordBuy(x, y, b, color);
+                    button_array[x][y] = b;
+                    color_array[x][y] = color;
                     setPlayerTurn("player2");
                     playerOwnedArray[x][y] = "Player 2";
                 } else if (counter == 3) {
                     System.out.println("Player 4 pick land");
                     String color = Player3.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    MapTile.recordBuy(x, y, b, color);
+                    button_array[x][y] = b;
+                    color_array[x][y] = color;
                     setPlayerTurn("player3");
                     playerOwnedArray[x][y] = "Player 3";
                 } else if (counter == 4) {
@@ -119,7 +289,8 @@ public class GameStartController implements Initializable {
                     }
                     String color = Player4.getColor();
                     b.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white;");
-                    MapTile.recordBuy(x, y, b, color);
+                    button_array[x][y] = b;
+                    color_array[x][y] = color;
                     playerOwnedArray[x][y] = "Player 4";
                 }
             counter++;
@@ -215,7 +386,7 @@ public class GameStartController implements Initializable {
             playerTurn++;
         }
     }
-    private void setPlayerTurn(String player) {
+    public static void setPlayerTurn(String player) {
         if(player.equals("player1")) {
             Player1.setMyTurn(true);
             Player2.setMyTurn(false);
@@ -260,7 +431,5 @@ public class GameStartController implements Initializable {
         player2Pass = Player2.getInitialLandSelection();
         player3Pass = Player3.getInitialLandSelection();
         player4Pass = Player4.getInitialLandSelection();
-        button_array = MapTile.getButtonArray();
-        color_array = MapTile.getColorArray();
     }        
 }

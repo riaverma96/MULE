@@ -235,10 +235,11 @@ public class TownController implements Initializable {
     }    
  
     private void buy_resources() {
-        Scanner scanner = new Scanner(System.in);
-        resourceType type = new resourceType(thisStage, "Pick your resource!");
+        muleType type = new muleType(thisStage, "Pick your resource!");
         String resource = type.getAnswer();
+        Scanner scanner = new Scanner(System.in);
         
+        numberQuestion question = new numberQuestion(thisStage, "How Much?");
         // inform user how many resourcs the store has
         if (resource.equals("Crystite") || resource.equals("crystite")) {
             System.out.println("The store currently has " 
@@ -511,9 +512,12 @@ public class TownController implements Initializable {
     }
     
     private void sell() {
+        
+
         Scanner scanner = new Scanner(System.in);
         resourceType type = new resourceType(thisStage, "Which resource would you like to sell?");
         String resource = type.getAnswer();
+        numberQuestion question = new numberQuestion(thisStage, "How Much?");
         
         // inform user how many resourcs he has
         if(Player1.myTurn()) {
@@ -531,14 +535,8 @@ public class TownController implements Initializable {
                         + " energy.");
             }
             
-             
-            
-            
-  
-
-            
             System.out.println("How much do you want to sell?");
-            int quantity = scanner.nextInt();
+            int quantity = question.getNumberAnswer();
             if (resource.equals("Crystite") || resource.equals("crystite")) {
                 if (Player1.get_crystite() >= quantity) {
                     Player1.set_crystite(Player1.get_crystite() - quantity);
@@ -582,9 +580,10 @@ public class TownController implements Initializable {
                 System.out.println("You currently have " + Player2.get_energy() 
                         + " energy.");
             }
-
+            numberQuestion q2 = new numberQuestion(thisStage, "How Much?");
+            int num = q2.getNumberAnswer();
             System.out.println("How much do you want to sell?");
-            int quantity = scanner.nextInt();
+            int quantity = num;
             if (resource.equals("Crystite") || resource.equals("crystite")) {
                 if (Player2.get_crystite() >= quantity) {
                     Player2.set_crystite(Player2.get_crystite() - quantity);
@@ -628,9 +627,10 @@ public class TownController implements Initializable {
                 System.out.println("You currently have " + Player3.get_energy() 
                         + " energy.");
             }
-
+            numberQuestion num1 = new numberQuestion(thisStage, "How Much?");
+            
             System.out.println("How much do you want to sell?");
-            int quantity = scanner.nextInt();
+            int quantity = num1.getNumberAnswer();
             if (resource.equals("Crystite") || resource.equals("crystite")) {
                 if (Player3.get_crystite() >= quantity) {
                     Player3.set_crystite(Player3.get_crystite() - quantity);
@@ -674,9 +674,9 @@ public class TownController implements Initializable {
                 System.out.println("You currently have " + Player4.get_energy() 
                         + " energy.");
             }
-
+            numberQuestion num3 = new numberQuestion(thisStage, "How Much?");
             System.out.println("How much do you want to sell?");
-            int quantity = scanner.nextInt();
+            int quantity = num3.getNumberAnswer();
             if (resource.equals("Crystite") || resource.equals("crystite")) {
                 if (Player4.get_crystite() >= quantity) {
                     Player4.set_crystite(Player4.get_crystite() - quantity);

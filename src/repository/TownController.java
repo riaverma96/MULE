@@ -157,7 +157,7 @@ public class TownController implements Initializable {
                     }
                 }
                 //add correct resource
-                GameStartController.getPlayer1().set_food(production);
+                GameStartController.getPlayer1().set_food(GameStartController.getPlayer1().get_food() + production);
                 System.out.println("Production successful");
             }
         } else {

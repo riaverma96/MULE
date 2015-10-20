@@ -41,6 +41,7 @@ public class TownController implements Initializable {
     // [0] = food; [1] = energy; [3] = ore
     private int[] cost_of_mules = {125, 150, 175};
     public static boolean enteredTown;
+    private static String type;
     Stage thisStage;
     /**
      * Initializes the controller class.
@@ -73,18 +74,39 @@ public class TownController implements Initializable {
        }
        if (timer.elapsedTime() >= 50.0) {
             System.out.println("turn is over!");
+            if (Player1.myTurn()) {
+                GameStartController.setPlayerTurn("player2");
+            } else if (Player2.myTurn()) {
+                GameStartController.setPlayerTurn("player3");
+            } else if (Player3.myTurn()) {
+                GameStartController.setPlayerTurn("player4");
+            } else if (Player4.myTurn()) {
+                GameStartController.setPlayerTurn("player1");
+            }
        }
        //default round = 1
        if (id.equals("pub")) {
-        double roundBonus = roundBonusIndex[round - 1];
-        double moneyWon = roundBonus * timerScore;
+           double roundBonus = roundBonusIndex[round - 1];
+           double moneyWon = roundBonus * timerScore;
 
-        if(moneyWon > 250 ) {
-            moneyWon = 250;
+           if(moneyWon > 250 ) {
+               moneyWon = 250;
+           }
+           System.out.println("Money Won is = " + moneyWon);
+           if (Player1.myTurn()) {
+                Player1.addMoney(moneyWon);
+                GameStartController.setPlayerTurn("player2");
+            } else if (Player2.myTurn()) {
+                Player2.addMoney(moneyWon);
+                GameStartController.setPlayerTurn("player3");
+            } else if (Player3.myTurn()) {
+                Player3.addMoney(moneyWon);
+                GameStartController.setPlayerTurn("player4");
+            } else if (Player4.myTurn()) {
+                Player4.addMoney(moneyWon);
+                GameStartController.setPlayerTurn("player1");
+            }
         }
-        System.out.println("Money Won is = " + moneyWon);
-        Player1.addMoney(moneyWon);
-       }
     }
     
     /**
@@ -176,12 +198,15 @@ public class TownController implements Initializable {
         if (choice.equals("Food") || choice.equals("food")) {
             cost += 25;
             index_of_type = 0;
+            type = "food";
         } else if (choice.equals("Energy") || choice.equals("energy")) {
             cost += 50;
             index_of_type = 1;
+            type = "energy";
         } else if (choice.equals("Ore") || choice.equals("ore")) {
             cost += 75;
             index_of_type = 2;
+            type = "ore";
         } else {
             System.out.println("Invalid type");
             return;
@@ -197,15 +222,19 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player1.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
+                Player1.hasNewMule();
+                Player1.getMule(type);
             }
         } else if (Player2.myTurn()) {
-            if (cost < Player1.getMoney()) {
+            if (cost < Player2.getMoney()) {
                 Player2.activate_mule(true);
                 store_resources[4] -= 1;
                 Player2.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
                 Player2.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
+                Player2.hasNewMule();
+                Player2.getMule(type);
             }
         } else if (Player3.myTurn()) {
             if (cost < Player3.getMoney()) {
@@ -215,6 +244,8 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player3.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
+                Player3.hasNewMule();
+                Player3.getMule(type);
             }
         } else if (Player4.myTurn()) {
             if (cost < Player4.getMoney()) {
@@ -224,6 +255,8 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player4.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
+                Player4.hasNewMule();
+                Player4.getMule(type);
             }
         } 
     }

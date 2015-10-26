@@ -46,6 +46,13 @@ public class Player2 {
         return nMule;
     }
     
+    public Player2() {
+        name = "aha";
+        money = 1000;
+        food = 8;
+        energy = 4;
+    }
+    
     public static void setInitialLandSelectionTrue() {
         initialLandSelection = true;
     }
@@ -109,10 +116,6 @@ public class Player2 {
         myTurn = turn;
     }
     
-    public Player2() {
-        name = "aha";
-        money = 1000;
-    }
     public void buyLand() {
         money -= 300;
         landNum++;

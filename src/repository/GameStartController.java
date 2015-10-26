@@ -31,10 +31,10 @@ public class GameStartController implements Initializable {
     private boolean player4Pass;
     private boolean townEnter = false;
     private boolean initialBuy;
-    private Player1 player1 = new Player1();
-    private Player2 player2 = new Player2();
-    private Player3 player3 = new Player3();
-    private Player4 player4 = new Player4();
+    private static Player1 player1 = new Player1();
+    private static Player2 player2 = new Player2();
+    private static Player3 player3 = new Player3();
+    private static Player4 player4 = new Player4();
     private MULE[][] mules = new MULE[5][9];
     private static Button[][] button_array = new Button[5][9];
     private static String[][] color_array = new String[5][9];
@@ -303,6 +303,7 @@ public class GameStartController implements Initializable {
                 
             } else {
                 if (counter == 1) {
+                    setPlayerTurn("player1");
                     Stage newstage = (Stage) b.getScene().getWindow();
                     AlertBox box = new AlertBox(newstage, "Land Selection");
                     int choice = box.getAnswer(); 
@@ -322,6 +323,7 @@ public class GameStartController implements Initializable {
                             player1Pass = true;
                         }
              } else if (counter == 2) {
+                        setPlayerTurn("player2");
                         Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -341,6 +343,7 @@ public class GameStartController implements Initializable {
                             player2Pass = true;
                         }
               } else if (counter == 3) {
+                        setPlayerTurn("player3");
                         Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -360,6 +363,7 @@ public class GameStartController implements Initializable {
                             player3Pass = true;
                         }
             } else {
+                  setPlayerTurn("player4");
                   Stage newstage = (Stage) b.getScene().getWindow();
                         AlertBox box = new AlertBox(newstage, "Land Selection");
                         int choice = box.getAnswer(); 
@@ -384,6 +388,8 @@ public class GameStartController implements Initializable {
                 counter = 1;
             }
             playerTurn++;
+            //the following line added for demo purposes only
+            setPlayerTurn("player1");
         }
     }
     public static void setPlayerTurn(String player) {
@@ -431,5 +437,20 @@ public class GameStartController implements Initializable {
         player2Pass = Player2.getInitialLandSelection();
         player3Pass = Player3.getInitialLandSelection();
         player4Pass = Player4.getInitialLandSelection();
-    }        
+        button_array = MapTile.getButtonArray();
+        color_array = MapTile.getColorArray();
+    }
+    
+    public static Player1 getPlayer1() {
+        return player1;
+    }
+    public static Player2 getPlayer2() {
+        return player2;
+    }
+    public static Player3 getPlayer3() {
+        return player3;
+    }
+    public static Player4 getPlayer4() {
+        return player4;
+    }
 }

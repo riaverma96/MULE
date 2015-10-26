@@ -24,6 +24,13 @@ public class Player1 {
     private static boolean mule_sprite;
     private static boolean initialLandSelection = false;
     
+    public Player1() {
+        name = "aha";
+        money = 1000;
+        food = 8;
+        energy = 4;
+    }
+    
     public static void setInitialLandSelectionTrue() {
         initialLandSelection = true;
     }
@@ -86,11 +93,6 @@ public class Player1 {
     
     public static void setMyTurn(boolean turn) {
         myTurn = turn;
-    }
-    
-    public Player1() {
-        name = "aha";
-        money = 1000;
     }
     
     public void buyLand() {

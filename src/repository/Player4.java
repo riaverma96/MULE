@@ -23,6 +23,28 @@ public class Player4 {
     private static int mule;
     private static boolean mule_sprite;
     private static boolean initialLandSelection = false;
+    private static MULE nMule;
+    private static boolean newMule = false;
+   
+    public static boolean getYNNewMule() {
+        return newMule;
+    }
+   
+    public static void hasNewMule() {
+        newMule = true;
+    }
+   
+    public static void noNewMule() {
+        newMule = false;
+    }
+   
+    public static void getMule(String type) {
+        nMule = new MULE(type, "Player 4");
+    }
+   
+    public static MULE placeMule() {
+        return nMule;
+    }
     
     public static void setInitialLandSelectionTrue() {
         initialLandSelection = true;

@@ -56,7 +56,7 @@ public class TownController implements Initializable {
         thisStage = (Stage) b.getScene().getWindow();
         Stopwatch timer = new Stopwatch(); 
         
-        resourceProduction();
+//        resourceProduction();
        
        while (timer.elapsedTime() < 50.0) {
            if (id.equals("pub")) {
@@ -127,43 +127,43 @@ public class TownController implements Initializable {
         }
     }
     
-    private void resourceProduction() {
-        if (GameStartController.getPlayer1().myTurn()) {
-            if (GameStartController.getPlayer1().get_energy() < 1) {
-                System.out.println("Not enough energy for production");
-            } else {
-                GameStartController.getPlayer1().set_energy(
-                    GameStartController.getPlayer1().get_energy() - 1);
-                //calc amount of prod
-                int production = 0;
-                ArrayList<String> player1Owned = new ArrayList<String>();
-                for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
-                    for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
-                        if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
-                            player1Owned.add("" + i + "" + j);
-                        }
-                    }
-                }
-                for (int i = 0; i < player1Owned.size(); i++) {
-                    String type =
-                            GameStartController.mapTypeArray[Integer.parseInt(player1Owned.get(i).substring(0, 1))][Integer.parseInt(player1Owned.get(i).substring(1, 2))];
-                    //currently only being calculated with food!!!
-                    if (type.equals("P")) {
-                        production += 2;
-                    } else if (type.equals("R")) {
-                        production += 4;
-                    } else {
-                        production += 1;
-                    }
-                }
-                //add correct resource
-                GameStartController.getPlayer1().set_food(GameStartController.getPlayer1().get_food() + production);
-                System.out.println("Production successful");
-            }
-        } else {
-            System.out.println("reached code, not player 1 turn");
-        }
-    }
+//    private void resourceProduction() {
+//        if (GameStartController.getPlayer1().myTurn()) {
+//            if (GameStartController.getPlayer1().get_energy() < 1) {
+//                System.out.println("Not enough energy for production");
+//            } else {
+//                GameStartController.getPlayer1().set_energy(
+//                    GameStartController.getPlayer1().get_energy() - 1);
+//                //calc amount of prod
+//                int production = 0;
+//                ArrayList<String> player1Owned = new ArrayList<String>();
+//                for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
+//                    for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
+//                        if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
+//                            player1Owned.add("" + i + "" + j);
+//                        }
+//                    }
+//                }
+//                for (int i = 0; i < player1Owned.size(); i++) {
+//                    String type =
+//                            GameStartController.mapTypeArray[Integer.parseInt(player1Owned.get(i).substring(0, 1))][Integer.parseInt(player1Owned.get(i).substring(1, 2))];
+//                    //currently only being calculated with food!!!
+//                    if (type.equals("P")) {
+//                        production += 2;
+//                    } else if (type.equals("R")) {
+//                        production += 4;
+//                    } else {
+//                        production += 1;
+//                    }
+//                }
+//                //add correct resource
+//                GameStartController.getPlayer1().set_food(GameStartController.getPlayer1().get_food() + production);
+//                System.out.println("Production successful");
+//            }
+//        } else {
+//            System.out.println("reached code, not player 1 turn");
+//        }
+//    }
     
     private void go_to_store() {
         Scanner scanner = new Scanner(System.in);

@@ -100,156 +100,156 @@ public class GameStartController implements Initializable {
         if (Player1.myTurn() && Player1.getYNNewMule()) {
             MULE m = Player1.placeMule();
             if (playerOwnedArray[x][y].equals("Player 1")) {
-//                if (Player1.getColor().equals("Red")) {
-//                    if (m.getType().equals("food")) {
-                        button_array[x][y].setStyle("-fx-background-image: url('http://static.arttoday.com/thm/thm4/dg_animal1F/animals1/oanimals/oan017k.thm.jpg')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
-//                    }
-//                } else if (Player1.getColor().equals("Blue")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
-//                    }
-//                } else if (Player1.getColor().equals("Green")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
-//                    }
-//                } else if (Player1.getColor().equals("Orange")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
-//                    }
-//                }
+                if (Player1.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/rwqw4xo3p/Food_MULE_RED2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/oturfayit/Ore_MULE_RED2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/o5hbimaf9/Energy_MULE_RED2.png')");
+                    }
+                } else if (Player1.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/6uqwqlirp/Food_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/5m314yqth/Ore_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/41xp6kif9/Energy_MULE_BLUE2.png')");
+                    }
+                } else if (Player1.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/flxxkv22t/Food_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/z2in7dx6t/Ore_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/lpfi4rscl/Energy_MULE_GREEN2.png')");
+                    }
+                } else if (Player1.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/n9ku360qt/Food_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/j6yehtw05/Ore_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/a45bx26v9/Energy_MULE_ORANGE2.png')");
+                    }
+                }
                 mules[x][y] = Player1.placeMule();
                 Player1.noNewMule();
             }
         } else if (Player2.myTurn() && Player2.getYNNewMule()) {
             MULE m = Player2.placeMule();
             if (playerOwnedArray[x][y].equals("Player 2")) {
-//                if (Player2.getColor().equals("Red")) {
-//                    if (m.getType().equals("food")) {
-                        button_array[x][y].setStyle("-fx-background-image: url('http://static.arttoday.com/thm/thm4/dg_animal1F/animals1/oanimals/oan017k.thm.jpg')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
-//                    }
-//                } else if (Player2.getColor().equals("Blue")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
-//                    }
-//                } else if (Player2.getColor().equals("Green")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
-//                    }
-//                } else if (Player2.getColor().equals("Orange")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
-//                    }
-//                }
+                if (Player2.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/rwqw4xo3p/Food_MULE_RED2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/oturfayit/Ore_MULE_RED2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/o5hbimaf9/Energy_MULE_RED2.png')");
+                    }
+                } else if (Player2.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/6uqwqlirp/Food_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/5m314yqth/Ore_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/41xp6kif9/Energy_MULE_BLUE2.png')");
+                    }
+                } else if (Player2.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/flxxkv22t/Food_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/z2in7dx6t/Ore_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/lpfi4rscl/Energy_MULE_GREEN2.png')");
+                    }
+                } else if (Player2.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/n9ku360qt/Food_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/j6yehtw05/Ore_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/a45bx26v9/Energy_MULE_ORANGE2.png')");
+                    }
+                }
                 mules[x][y] = Player2.placeMule();
                 Player2.noNewMule();
             }
         } else if (Player3.myTurn() && Player3.getYNNewMule()) {
             MULE m = Player3.placeMule();
             if (playerOwnedArray[x][y].equals("Player 3")) {
-//                if (Player3.getColor().equals("Red")) {
-//                    if (m.getType().equals("food")) {
-                        button_array[x][y].setStyle("-fx-background-image: url('http://static.arttoday.com/thm/thm4/dg_animal1F/animals1/oanimals/oan017k.thm.jpg')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
-//                    }
-//                } else if (Player3.getColor().equals("Blue")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
-//                    }
-//                } else if (Player3.getColor().equals("Green")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
-//                    }
-//                } else if (Player3.getColor().equals("Orange")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
-//                    }
-//                }
+                if (Player3.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/rwqw4xo3p/Food_MULE_RED2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/oturfayit/Ore_MULE_RED2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/o5hbimaf9/Energy_MULE_RED2.png')");
+                    }
+                } else if (Player3.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/6uqwqlirp/Food_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/5m314yqth/Ore_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/41xp6kif9/Energy_MULE_BLUE2.png')");
+                    }
+                } else if (Player3.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/flxxkv22t/Food_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/z2in7dx6t/Ore_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/lpfi4rscl/Energy_MULE_GREEN2.png')");
+                    }
+                } else if (Player3.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/n9ku360qt/Food_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/j6yehtw05/Ore_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/a45bx26v9/Energy_MULE_ORANGE2.png')");
+                    }
+                }
                 mules[x][y] = Player3.placeMule();
                 Player3.noNewMule();
             }
         } else if (Player4.myTurn() && Player4.getYNNewMule()) {
             MULE m = Player4.placeMule();
             if (playerOwnedArray[x][y].equals("Player 4")) {
-//                if (Player4.getColor().equals("Red")) {
-//                    if (m.getType().equals("food")) {
-                        button_array[x][y].setStyle("-fx-background-image: url('http://static.arttoday.com/thm/thm4/dg_animal1F/animals1/oanimals/oan017k.thm.jpg')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_RED.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_RED.png')");
-//                    }
-//                } else if (Player4.getColor().equals("Blue")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_BLUE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_BLUE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_BLUE.png')");
-//                    }
-//                } else if (Player4.getColor().equals("Green")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_GREEN.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_GREEN.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_GREEN.png')");
-//                    }
-//                } else if (Player4.getColor().equals("Orange")) {
-//                    if (m.getType().equals("food")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('FoodMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("ore")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('OreMULE_ORANGE.png')");
-//                    } else if (m.getType().equals("energy")) {
-//                        button_array[x][y].setStyle("-fx-background-image: url('EnergyMULE_ORANGE.png')");
-//                    }
-//                }
+                if (Player4.getColor().equals("Red")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/rwqw4xo3p/Food_MULE_RED2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/oturfayit/Ore_MULE_RED2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/o5hbimaf9/Energy_MULE_RED2.png')");
+                    }
+                } else if (Player4.getColor().equals("Blue")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/6uqwqlirp/Food_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/5m314yqth/Ore_MULE_BLUE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/41xp6kif9/Energy_MULE_BLUE2.png')");
+                    }
+                } else if (Player4.getColor().equals("Green")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/flxxkv22t/Food_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/z2in7dx6t/Ore_MULE_GREEN2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/lpfi4rscl/Energy_MULE_GREEN2.png')");
+                    }
+                } else if (Player4.getColor().equals("Orange")) {
+                    if (m.getType().equals("food")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/n9ku360qt/Food_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("ore")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/j6yehtw05/Ore_MULE_ORANGE2.png')");
+                    } else if (m.getType().equals("energy")) {
+                        button_array[x][y].setStyle("-fx-background-image: url('http://s10.postimg.org/a45bx26v9/Energy_MULE_ORANGE2.png')");
+                    }
+                }
                 mules[x][y] = Player4.placeMule();
                 Player4.noNewMule();
             }

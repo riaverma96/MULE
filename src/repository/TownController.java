@@ -25,6 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.util.Random;
+import java.lang.Math;
 
 /**
  * FXML Controller class
@@ -43,8 +45,8 @@ public class TownController implements Initializable {
     // [0] = food; [1] = energy; [3] = ore
     private int[] cost_of_mules = {125, 150, 175};
     public static boolean enteredTown;
-    private static String type;
     Stage thisStage;
+    int[] price_calculation = {25, 25, 25, 50, 50, 50, 50, 75, 75, 75, 75, 100};
     /**
      * Initializes the controller class.
      */
@@ -57,6 +59,12 @@ public class TownController implements Initializable {
         Stopwatch timer = new Stopwatch(); 
         
         resourceProduction();
+        Random rand = new Random();
+        int chance = rand.nextInt(100); 
+        if (chance < 27) {
+            String event_message = random_event();
+            // !!!!!!print event_message!!!!!!!!!
+        }
        
        while (timer.elapsedTime() < 50.0) {
            if (id.equals("pub")) {
@@ -78,39 +86,18 @@ public class TownController implements Initializable {
        }
        if (timer.elapsedTime() >= 50.0) {
             System.out.println("turn is over!");
-            if (Player1.myTurn()) {
-                GameStartController.setPlayerTurn("player2");
-            } else if (Player2.myTurn()) {
-                GameStartController.setPlayerTurn("player3");
-            } else if (Player3.myTurn()) {
-                GameStartController.setPlayerTurn("player4");
-            } else if (Player4.myTurn()) {
-                GameStartController.setPlayerTurn("player1");
-            }
        }
        //default round = 1
        if (id.equals("pub")) {
-           double roundBonus = roundBonusIndex[round - 1];
-           double moneyWon = roundBonus * timerScore;
+        double roundBonus = roundBonusIndex[round - 1];
+        double moneyWon = roundBonus * timerScore;
 
-           if(moneyWon > 250 ) {
-               moneyWon = 250;
-           }
-           System.out.println("Money Won is = " + moneyWon);
-           if (Player1.myTurn()) {
-                Player1.addMoney(moneyWon);
-                GameStartController.setPlayerTurn("player2");
-            } else if (Player2.myTurn()) {
-                Player2.addMoney(moneyWon);
-                GameStartController.setPlayerTurn("player3");
-            } else if (Player3.myTurn()) {
-                Player3.addMoney(moneyWon);
-                GameStartController.setPlayerTurn("player4");
-            } else if (Player4.myTurn()) {
-                Player4.addMoney(moneyWon);
-                GameStartController.setPlayerTurn("player1");
-            }
+        if(moneyWon > 250 ) {
+            moneyWon = 250;
         }
+        System.out.println("Money Won is = " + moneyWon);
+        Player1.addMoney(moneyWon);
+       }
     }
     
     /**
@@ -140,12 +127,8 @@ public class TownController implements Initializable {
                 ArrayList<String> player1Owned = new ArrayList<String>();
                 for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
                     for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
-                        try {
-                            if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
-                                player1Owned.add("" + i + "" + j);
-                            }
-                        } catch (Exception e) {
-                            //n/a
+                        if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
+                            player1Owned.add("" + i + "" + j);
                         }
                     }
                 }
@@ -165,125 +148,9 @@ public class TownController implements Initializable {
                 GameStartController.getPlayer1().set_food(GameStartController.getPlayer1().get_food() + production);
                 System.out.println("Production successful");
             }
+        } else {
+            System.out.println("reached code, not player 1 turn");
         }
-        //PLAYER 2
-        if (GameStartController.getPlayer2().myTurn()) {
-            if (GameStartController.getPlayer2().get_energy() < 1) {
-                productionMessage m1 = new productionMessage(thisStage, "Message");
-                System.out.println("Not enough energy for production");
-            } else {
-                GameStartController.getPlayer2().set_energy(
-                    GameStartController.getPlayer2().get_energy() - 1);
-                //calc amount of prod
-                int production = 0;
-                ArrayList<String> player2Owned = new ArrayList<String>();
-                for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
-                    for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
-                        try {
-                            if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
-                                player2Owned.add("" + i + "" + j);
-                            }
-                        } catch (Exception e) {
-                            //n/a
-                        }
-                    }
-                }
-                for (int i = 0; i < player2Owned.size(); i++) {
-                    String type =
-                            GameStartController.mapTypeArray[Integer.parseInt(player2Owned.get(i).substring(0, 1))][Integer.parseInt(player2Owned.get(i).substring(1, 2))];
-                    //currently only being calculated with food!!!
-                    if (type.equals("P")) {
-                        production += 2;
-                    } else if (type.equals("R")) {
-                        production += 4;
-                    } else {
-                        production += 1;
-                    }
-                }
-                //add correct resource
-                GameStartController.getPlayer2().set_food(GameStartController.getPlayer2().get_food() + production);
-                System.out.println("Production successful");
-            }
-        }
-        //PLAYER 3
-        if (GameStartController.getPlayer3().myTurn()) {
-            if (GameStartController.getPlayer3().get_energy() < 1) {
-                productionMessage m1 = new productionMessage(thisStage, "Message");
-                System.out.println("Not enough energy for production");
-            } else {
-                GameStartController.getPlayer3().set_energy(
-                    GameStartController.getPlayer3().get_energy() - 1);
-                //calc amount of prod
-                int production = 0;
-                ArrayList<String> player3Owned = new ArrayList<String>();
-                for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
-                    for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
-                        try {
-                            if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
-                                player3Owned.add("" + i + "" + j);
-                            }
-                        } catch (Exception e) {
-                            //n/a
-                        }
-                    }
-                }
-                for (int i = 0; i < player3Owned.size(); i++) {
-                    String type =
-                            GameStartController.mapTypeArray[Integer.parseInt(player3Owned.get(i).substring(0, 1))][Integer.parseInt(player3Owned.get(i).substring(1, 2))];
-                    //currently only being calculated with food!!!
-                    if (type.equals("P")) {
-                        production += 2;
-                    } else if (type.equals("R")) {
-                        production += 4;
-                    } else {
-                        production += 1;
-                    }
-                }
-                //add correct resource
-                GameStartController.getPlayer3().set_food(GameStartController.getPlayer3().get_food() + production);
-                System.out.println("Production successful");
-            }
-        }
-        //PLAYER 4
-        if (GameStartController.getPlayer4().myTurn()) {
-            if (GameStartController.getPlayer4().get_energy() < 1) {
-                productionMessage m1 = new productionMessage(thisStage, "Message");
-                System.out.println("Not enough energy for production");
-            } else {
-                GameStartController.getPlayer4().set_energy(
-                    GameStartController.getPlayer4().get_energy() - 1);
-                //calc amount of prod
-                int production = 0;
-                ArrayList<String> player4Owned = new ArrayList<String>();
-                for (int i = 0; i < GameStartController.playerOwnedArray.length; i++) {
-                    for (int j = 0; j < GameStartController.playerOwnedArray[0].length; j++) {
-                        try {
-                            if (GameStartController.playerOwnedArray[i][j].equals("Player 1")) {
-                                player4Owned.add("" + i + "" + j);
-                            }
-                        } catch (Exception e) {
-                            //n/a
-                        }
-                    }
-                }
-                for (int i = 0; i < player4Owned.size(); i++) {
-                    String type =
-                            GameStartController.mapTypeArray[Integer.parseInt(player4Owned.get(i).substring(0, 1))][Integer.parseInt(player4Owned.get(i).substring(1, 2))];
-                    //currently only being calculated with food!!!
-                    if (type.equals("P")) {
-                        production += 2;
-                    } else if (type.equals("R")) {
-                        production += 4;
-                    } else {
-                        production += 1;
-                    }
-                }
-                //add correct resource
-                GameStartController.getPlayer4().set_food(GameStartController.getPlayer4().get_food() + production);
-                System.out.println("Production successful");
-            }
-        }
-
     }
     
     private void go_to_store() {
@@ -361,15 +228,12 @@ public class TownController implements Initializable {
         if (choice.equals("Food") || choice.equals("food")) {
             cost += 25;
             index_of_type = 0;
-            type = "food";
         } else if (choice.equals("Energy") || choice.equals("energy")) {
             cost += 50;
             index_of_type = 1;
-            type = "energy";
         } else if (choice.equals("Ore") || choice.equals("ore")) {
             cost += 75;
             index_of_type = 2;
-            type = "ore";
         } else {
             System.out.println("Invalid type");
             return;
@@ -385,19 +249,15 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player1.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
-                Player1.hasNewMule();
-                Player1.getMule(type);
             }
         } else if (Player2.myTurn()) {
-            if (cost < Player2.getMoney()) {
+            if (cost < Player1.getMoney()) {
                 Player2.activate_mule(true);
                 store_resources[4] -= 1;
                 Player2.add_mule(1);
                 purchase_price = cost_of_mules[index_of_type];
                 Player2.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
-                Player2.hasNewMule();
-                Player2.getMule(type);
             }
         } else if (Player3.myTurn()) {
             if (cost < Player3.getMoney()) {
@@ -407,8 +267,6 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player3.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
-                Player3.hasNewMule();
-                Player3.getMule(type);
             }
         } else if (Player4.myTurn()) {
             if (cost < Player4.getMoney()) {
@@ -418,13 +276,10 @@ public class TownController implements Initializable {
                 purchase_price = cost_of_mules[index_of_type];
                 Player4.addMoney(-(purchase_price));
                 System.out.println("You have purchased a MULE!");
-                Player4.hasNewMule();
-                Player4.getMule(type);
             }
         } 
     }
    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //
@@ -903,5 +758,189 @@ public class TownController implements Initializable {
                 }
             }
         }
+    }
+    
+    // adjusts Player's money based on random event
+    // returns event_message to be displayed to player
+    private String random_event() {
+        boolean[] last_player = find_last_player();
+        Random rand = new Random();
+        int event = -1;
+        
+        String first = "YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI "
+                + "CONTAINING 3 FOOD AND 2 ENERGY UNITS.";
+        String second = "A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY "
+                + "LEAVING TWO BARS OF ORE.";
+        String third = "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER "
+                + "FOR $ 8*m.";
+        String fourth = "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR "
+                + "$2*m.";
+        String fifth = "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS "
+                + "COST $4*m.";
+        String sixth = "MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED "
+                + "AND STOLE HALF YOUR FOOD.";
+        String seventh = "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT "
+                + "COST YOU $6*m TO CLEAN IT UP.";
+        
+        int round = 6;   // !!!!!!edit!!!!!  
+        if (Player1.myTurn()) {
+            event = (last_player[0] == true)? rand.nextInt(4) : rand.nextInt(7);
+            if (event == 0) {
+                Player1.set_food(Player1.get_food() + 3);
+                Player1.set_energy(Player1.get_energy() + 2);
+                return first;
+            } else if (event == 1) {
+                Player1.set_ore(Player1.get_ore() + 2);
+                return second;
+            } else if (event == 2) {
+                Player1.addMoney(8*price_calculation[round - 1]);
+                return third;
+            } else if (event == 3) {
+                Player1.addMoney(2*price_calculation[round - 1]);
+                return fourth;
+            } else if (event == 4) {
+                int cost = 4*price_calculation[round - 1];
+                if (Player1.getMoney() - cost < 0) {
+                    Player1.addMoney(-Player1.getMoney());
+                } else {
+                    Player1.addMoney(-cost);
+                }
+                return fifth;
+            } else if (event == 5) {
+                Player1.set_food(Player1.get_food()/2);
+                return sixth;
+            } else if (event == 6) {
+                int cost = 6*price_calculation[round - 1];
+                if (Player1.getMoney() - cost < 0) {
+                    Player1.addMoney(-Player1.getMoney());
+                } else {
+                    Player1.addMoney(-cost);
+                }
+                return seventh;
+            }
+        } else if (Player2.myTurn()) {
+            event = (last_player[1] == true)? rand.nextInt(4) : rand.nextInt(7);
+            if (event == 0) {
+                Player2.set_food(Player2.get_food() + 3);
+                Player2.set_energy(Player2.get_energy() + 2);
+                return first;
+            } else if (event == 1) {
+                Player2.set_ore(Player2.get_ore() + 2);
+                return second;
+            } else if (event == 2) {
+                Player2.addMoney(8*price_calculation[round - 1]);
+                return third;
+            } else if (event == 3) {
+                Player2.addMoney(2*price_calculation[round - 1]);
+                return fourth;
+            } else if (event == 4) {
+                int cost = 4*price_calculation[round - 1];
+                if (Player2.getMoney() - cost < 0) {
+                    Player2.addMoney(-Player2.getMoney());
+                } else {
+                    Player2.addMoney(-cost);
+                }
+                return fifth;
+            } else if (event == 5) {
+                Player2.set_food(Player2.get_food()/2);
+                return sixth;
+            } else if (event == 6) {
+                int cost = 6*price_calculation[round - 1];
+                if (Player2.getMoney() - cost < 0) {
+                    Player2.addMoney(-Player2.getMoney());
+                } else {
+                    Player2.addMoney(-cost);
+                }
+                return seventh;
+            }
+        } else if (Player3.myTurn()) {
+            event = (last_player[2] == true)? rand.nextInt(4) : rand.nextInt(7);
+            if (event == 0) {
+                Player3.set_food(Player3.get_food() + 3);
+                Player3.set_energy(Player3.get_energy() + 2);
+                return first;
+            } else if (event == 1) {
+                Player3.set_ore(Player3.get_ore() + 2);
+                return second;
+            } else if (event == 2) {
+                Player3.addMoney(8*price_calculation[round - 1]);
+                return third;
+            } else if (event == 3) {
+                Player3.addMoney(2*price_calculation[round - 1]);
+                return fourth;
+            } else if (event == 4) {
+                int cost = 4*price_calculation[round - 1];
+                if (Player3.getMoney() - cost < 0) {
+                    Player3.addMoney(-Player3.getMoney());
+                } else {
+                    Player3.addMoney(-cost);
+                }
+                return fifth;
+            } else if (event == 5) {
+                Player3.set_food(Player3.get_food()/2);
+                return sixth;
+            } else if (event == 6) {
+                int cost = 6*price_calculation[round - 1];
+                if (Player3.getMoney() - cost < 0) {
+                    Player3.addMoney(-Player3.getMoney());
+                } else {
+                    Player3.addMoney(-cost);
+                }
+                return seventh;
+            }
+        } else if (Player4.myTurn()) {
+            event = (last_player[3] == true)? rand.nextInt(4) : rand.nextInt(7);
+            if (event == 0) {
+                Player4.set_food(Player4.get_food() + 3);
+                Player4.set_energy(Player4.get_energy() + 2);
+                return first;
+            } else if (event == 1) {
+                Player4.set_ore(Player4.get_ore() + 2);
+                return second;
+            } else if (event == 2) {
+                Player4.addMoney(8*price_calculation[round - 1]);
+                return third;
+            } else if (event == 3) {
+                Player4.addMoney(2*price_calculation[round - 1]);
+                return fourth;
+            } else if (event == 4) {
+                int cost = 4*price_calculation[round - 1];
+                if (Player4.getMoney() - cost < 0) {
+                    Player4.addMoney(-Player4.getMoney());
+                } else {
+                    Player4.addMoney(-cost);
+                }
+                return fifth;
+            } else if (event == 5) {
+                Player4.set_food(Player4.get_food()/2);
+                return sixth;
+            } else if (event == 6) {
+                int cost = 6*price_calculation[round - 1];
+                if (Player4.getMoney() - cost < 0) {
+                    Player4.addMoney(-Player4.getMoney());
+                } else {
+                    Player4.addMoney(-cost);
+                }
+                return seventh;
+            }
+        }
+    } 
+   
+    // returns a boolean array 
+    // a true in the boolean array at index [player - 1]
+    // indicates that the player is in the last position
+    private boolean[] find_last_player() {
+        int one = Player1.getMoney();
+        int two = Player2.getMoney();
+        int three = Player3.getMoney();
+        int four = Player4.getMoney();
+        
+        boolean[] answer = new boolean[4];
+        int min = Math.min(Math.min(Math.min(one, two), three), four);
+        if (one - min == 0) answer[0] = true;
+        if (two - min == 0) answer[1] = true;
+        if (three - min == 0) answer[2] = true;
+        if (four - min == 0) answer[3] = true;
+        return answer;
     }
 }

@@ -56,7 +56,7 @@ public class TownController implements Initializable {
         thisStage = (Stage) b.getScene().getWindow();
         Stopwatch timer = new Stopwatch(); 
         
-//        resourceProduction();
+        resourceProduction();
        
        while (timer.elapsedTime() < 50.0) {
            if (id.equals("pub")) {
@@ -165,8 +165,6 @@ public class TownController implements Initializable {
                 GameStartController.getPlayer1().set_food(GameStartController.getPlayer1().get_food() + production);
                 System.out.println("Production successful");
             }
-        } else {
-            System.out.println("reached code, not player 1 turn");
         }
         //PLAYER 2
         if (GameStartController.getPlayer2().myTurn()) {
@@ -206,8 +204,6 @@ public class TownController implements Initializable {
                 GameStartController.getPlayer2().set_food(GameStartController.getPlayer2().get_food() + production);
                 System.out.println("Production successful");
             }
-        } else {
-            System.out.println("reached code, not player 1 turn");
         }
         //PLAYER 3
         if (GameStartController.getPlayer3().myTurn()) {
@@ -247,8 +243,6 @@ public class TownController implements Initializable {
                 GameStartController.getPlayer3().set_food(GameStartController.getPlayer3().get_food() + production);
                 System.out.println("Production successful");
             }
-        } else {
-            System.out.println("reached code, not player 1 turn");
         }
         //PLAYER 4
         if (GameStartController.getPlayer4().myTurn()) {
@@ -288,8 +282,6 @@ public class TownController implements Initializable {
                 GameStartController.getPlayer4().set_food(GameStartController.getPlayer4().get_food() + production);
                 System.out.println("Production successful");
             }
-        } else {
-            System.out.println("reached code, not player 1 turn");
         }
 
     }

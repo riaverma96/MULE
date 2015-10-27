@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="repository.Person4Controller">
+  <children>
+    <Label layoutX="254.0" layoutY="25.0" text="MULE" textAlignment="CENTER" textFill="#ee0303" underline="true">
+      <font>
+        <Font size="35.0" />
+      </font>
+    </Label>
+    <Label layoutX="285.0" layoutY="73.0" text="By Team Get That A" />
+    <Label layoutX="14.0" layoutY="89.0" text="Enter your name :" />
+    <TextField layoutX="14.0" layoutY="113.0" />
+    <Label layoutX="14.0" layoutY="160.0" text="Select A Race:" />
+    <Button fx:id="humanoid" layoutX="27.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Humanoid" />
+    <Button fx:id="mechtron" layoutX="136.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Mechtron" />
+    <Button fx:id="spheroid" layoutX="233.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Spheroid" />
+    <Button fx:id="flapper" layoutX="332.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Flapper" />
+    <Label layoutX="14.0" layoutY="256.0" text="Select a Color" />
+    <Button fx:id="bRed" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Red" />
+    <Button fx:id="bBlue" layoutX="90.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Blue" />
+    <Button fx:id="bGreen" layoutX="158.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Green" />
+    <Button fx:id="bOrange" layoutX="242.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Orange" />
+    <Button id="player1" fx:id="startGame" layoutX="480.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Start Game &gt;" />
+    <Label layoutX="14.0" layoutY="67.0" prefWidth="88.0" text="Player 4">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

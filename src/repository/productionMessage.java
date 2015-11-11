@@ -24,12 +24,22 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Sumi
+ */
 public class productionMessage extends Stage {
     Stage owner;
     Stage stage;
     BorderPane root;
     private String answer;
     private int numberAnswer;
+
+    /**
+     *
+     * @param owner
+     * @param title
+     */
     public productionMessage(Stage owner, String title) {
         root = new BorderPane();
         stage = this;
@@ -42,6 +52,9 @@ public class productionMessage extends Stage {
        
     }
 
+    /**
+     *
+     */
     public void setContents() {
 
       stage.setTitle("How much??");
@@ -80,6 +93,11 @@ public class productionMessage extends Stage {
       stage.showAndWait();
 
     }
+
+    /**
+     *
+     * @return
+     */
     public int getNumberAnswer() {
         return numberAnswer;
     }

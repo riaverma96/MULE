@@ -44,6 +44,10 @@ public class TownController implements Initializable {
     private int[] cost_of_resources = {30, 25, 50, 100, 100};
     // [0] = food; [1] = energy; [3] = ore
     private int[] cost_of_mules = {125, 150, 175};
+
+    /**
+     *
+     */
     public static boolean enteredTown;
     Stage thisStage;
     int[] price_calculation = {25, 25, 25, 50, 50, 50, 50, 75, 75, 75, 75, 100};

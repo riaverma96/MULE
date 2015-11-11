@@ -19,6 +19,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Sumi
+ */
 public class AlertBox extends Stage {
     Stage owner;
     Stage stage;
@@ -26,6 +30,11 @@ public class AlertBox extends Stage {
     static boolean postStatus;
     private static int answer;
 
+    /**
+     *
+     * @param owner
+     * @param title
+     */
     public AlertBox(Stage owner, String title) {
         root = new BorderPane();
         stage = this;
@@ -38,6 +47,9 @@ public class AlertBox extends Stage {
        
     }
 
+    /**
+     *
+     */
     public void setContents() {
 
         Scene scene = new Scene(root, 250, 100);
@@ -81,6 +93,12 @@ public class AlertBox extends Stage {
 
     }
 
+    /**
+     *
+     * @param owner
+     * @param title
+     * @return
+     */
     public static boolean confirmTranactionPosting(Stage owner, String title) {
 
         new AlertBox(owner, title);
@@ -88,6 +106,10 @@ public class AlertBox extends Stage {
         return postStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAnswer() {
         return answer;
     }

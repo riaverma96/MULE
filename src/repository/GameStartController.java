@@ -41,12 +41,20 @@ public class GameStartController implements Initializable {
     private Button b = new Button();
     private String id;
     Stage stage;
+
+    /**
+     *
+     */
     public static String[][] mapTypeArray = new String[][]{
         {"P", "P", "M1", "P", "R", "P", "M3", "P", "P"},
         {"P", "M1", "P", "P", "R", "P", "P", "P", "M3"},
         {"M3", "P", "P", "P", "TOWN", "P", "P", "P", "M1"},
         {"P", "M2", "P", "P", "R", "P", "M2", "P", "P"},
         {"P", "P", "M2", "P", "R", "P", "P", "P", "M2"}};
+
+    /**
+     *
+     */
     public static String[][] playerOwnedArray = new String[5][9];
     String xlocation;
     String ylocation;
@@ -392,6 +400,11 @@ public class GameStartController implements Initializable {
             setPlayerTurn("player1");
         }
     }
+
+    /**
+     *
+     * @param player
+     */
     public static void setPlayerTurn(String player) {
         if(player.equals("player1")) {
             Player1.setMyTurn(true);
@@ -416,6 +429,9 @@ public class GameStartController implements Initializable {
         }
     }
        
+    /**
+     *
+     */
     public static void resetButtons() {
         for (int i = 0; i < 5; i++) {
            for (int j = 0; j < 9; j++) {
@@ -441,15 +457,34 @@ public class GameStartController implements Initializable {
         color_array = MapTile.getColorArray();
     }
     
+    /**
+     *
+     * @return
+     */
     public static Player1 getPlayer1() {
         return player1;
     }
+
+    /**
+     *
+     * @return
+     */
     public static Player2 getPlayer2() {
         return player2;
     }
+
+    /**
+     *
+     * @return
+     */
     public static Player3 getPlayer3() {
         return player3;
     }
+
+    /**
+     *
+     * @return
+     */
     public static Player4 getPlayer4() {
         return player4;
     }

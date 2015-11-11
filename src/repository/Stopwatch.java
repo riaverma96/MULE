@@ -1,5 +1,9 @@
 package repository;
 
+/**
+ *
+ * @author Diya
+ */
 public class Stopwatch { 
 
     private final long start;

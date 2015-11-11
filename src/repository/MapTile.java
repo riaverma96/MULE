@@ -13,18 +13,36 @@ public class MapTile {
     private static Button[][] bArray = new Button[5][9];
     private static String[][] cArray = new String[5][9];
     
+    /**
+     *
+     */
     public MapTile() {
     }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @param b
+     * @param s
+     */
     public static void recordBuy(int x, int y, Button b, String s){
         bArray[x][y] = b;
         cArray[x][y] = s;
     }
     
+    /**
+     *
+     * @return
+     */
     public static Button[][] getButtonArray(){
       return bArray;
     }
     
+    /**
+     *
+     * @return
+     */
     public static String[][] getColorArray(){
       return cArray;
     }

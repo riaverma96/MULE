@@ -20,12 +20,21 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Sumi
+ */
 public class resourceType extends Stage {
     Stage owner;
     Stage stage;
     BorderPane root;
     private String answer;
 
+    /**
+     *
+     * @param owner
+     * @param title
+     */
     public resourceType(Stage owner, String title) {
         root = new BorderPane();
         stage = this;
@@ -38,6 +47,9 @@ public class resourceType extends Stage {
        
     }
 
+    /**
+     *
+     */
     public void setContents() {
 
         Scene scene = new Scene(root, 650, 200);
@@ -97,6 +109,11 @@ public class resourceType extends Stage {
         stage.showAndWait();
 
     }
+
+    /**
+     *
+     * @return
+     */
     public String getAnswer() {
         return answer;
     }

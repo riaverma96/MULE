@@ -20,12 +20,21 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Sumi
+ */
 public class storePopup extends Stage {
     Stage owner;
     Stage stage;
     BorderPane root;
     private String answer;
 
+    /**
+     *
+     * @param owner
+     * @param title
+     */
     public storePopup(Stage owner, String title) {
         root = new BorderPane();
         stage = this;
@@ -38,6 +47,9 @@ public class storePopup extends Stage {
        
     }
 
+    /**
+     *
+     */
     public void setContents() {
 
         Scene scene = new Scene(root, 250, 100);
@@ -77,6 +89,11 @@ public class storePopup extends Stage {
         stage.showAndWait();
 
     }
+
+    /**
+     *
+     * @return
+     */
     public String getAnswer() {
         return answer;
     }

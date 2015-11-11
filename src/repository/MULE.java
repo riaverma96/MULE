@@ -13,6 +13,11 @@ public class MULE {
     private String type;
     private String owner;
     
+    /**
+     *
+     * @param type
+     * @param owner
+     */
     public MULE(String type, String owner) {
         this.type = type;
         this.owner = owner;
